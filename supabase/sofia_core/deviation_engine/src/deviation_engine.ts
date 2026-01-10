@@ -9,6 +9,7 @@ export const deviationEngine = {
       deviation: 0,
       direction: "neutral",
       alert: null,
+      stability: 1.0,
       history: []
     };
   },
@@ -38,6 +39,17 @@ export const deviationEngine = {
       alert = "high_drift";
     }
 
+    // stability scoring
+    let stability = 1 - magnitude / 100;
+
+    // penalties for alerts
+    if (alert === "high_drift") stability -= 0.15;
+    if (alert === "critical_drift") stability -= 0.35;
+
+    // clamp stability
+    if (stability < 0) stability = 0;
+    if (stability > 1) stability = 1;
+
     // event record
     const event = {
       previous: state.deviation,
@@ -45,6 +57,7 @@ export const deviationEngine = {
       delta,
       direction,
       alert,
+      stability,
       timestamp: Date.now()
     };
 
@@ -53,6 +66,7 @@ export const deviationEngine = {
       deviation: next,
       direction,
       alert,
+      stability,
       history: [...state.history, event]
     };
   },
@@ -63,6 +77,7 @@ export const deviationEngine = {
       magnitude: Math.abs(state.deviation),
       direction: state.direction,
       alert: state.alert ?? null,
+      stability: state.stability,
       history: state.history
     };
   }
