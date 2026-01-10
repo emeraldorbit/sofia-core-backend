@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "name": "sofia_api",
+    "version": "1.0.0",
+    "description": "Primary API entrypoint for Sofia Core"
+  },
+  "input": {
+    "type": "object"
+  },
+  "output": {
+    "type": "object"
+  }
+}
