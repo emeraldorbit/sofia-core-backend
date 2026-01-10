@@ -1,0 +1,22 @@
+{
+  "sofia_core": {
+    "version": "1.0.0",
+    "description": "Unified governance, reasoning, and output pipeline for Sofia Core.",
+    "subsystems": {
+      "resonance_engine": "active",
+      "identity_filter": "active",
+      "coherence_engine": "active",
+      "deviation_engine": "active",
+      "alignment_engine": "active",
+      "output_sealer": "active",
+      "pipeline_integrator": "active",
+      "sofia_api": "active",
+      "sofia_core_index": "active"
+    },
+    "governance": {
+      "maintainer": "Emerald Estates® — Sofia Core Governance",
+      "integrity_mode": "strict",
+      "pipeline_order_locked": true
+    }
+  }
+}
