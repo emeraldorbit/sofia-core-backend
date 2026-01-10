@@ -1,0 +1,15 @@
+{
+  "resonance": {
+    "amplitude_min": 0.4,
+    "amplitude_max": 1.0,
+    "coherence_min": 0.5,
+    "coherence_max": 1.0,
+    "reject_dissonance": true
+  },
+  "enforcement": {
+    "validate_amplitude": true,
+    "validate_coherence": true,
+    "reject_if_dissonant": true,
+    "log_resonance_events": true
+  }
+}
