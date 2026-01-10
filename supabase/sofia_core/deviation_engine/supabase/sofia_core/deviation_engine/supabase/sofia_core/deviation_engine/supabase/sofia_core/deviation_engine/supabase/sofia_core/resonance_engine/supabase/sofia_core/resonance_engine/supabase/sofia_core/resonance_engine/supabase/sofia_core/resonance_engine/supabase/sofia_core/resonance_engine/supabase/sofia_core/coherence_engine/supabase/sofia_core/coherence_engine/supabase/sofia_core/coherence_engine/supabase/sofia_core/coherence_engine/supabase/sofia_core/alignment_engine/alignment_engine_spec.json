@@ -1,0 +1,15 @@
+{
+  "alignment": {
+    "intent_fit_min": 0.6,
+    "intent_fit_max": 1.0,
+    "mission_fit_min": 0.7,
+    "mission_fit_max": 1.0,
+    "reject_misalignment": true
+  },
+  "enforcement": {
+    "validate_intent_fit": true,
+    "validate_mission_fit": true,
+    "reject_if_misaligned": true,
+    "log_alignment_events": true
+  }
+}
