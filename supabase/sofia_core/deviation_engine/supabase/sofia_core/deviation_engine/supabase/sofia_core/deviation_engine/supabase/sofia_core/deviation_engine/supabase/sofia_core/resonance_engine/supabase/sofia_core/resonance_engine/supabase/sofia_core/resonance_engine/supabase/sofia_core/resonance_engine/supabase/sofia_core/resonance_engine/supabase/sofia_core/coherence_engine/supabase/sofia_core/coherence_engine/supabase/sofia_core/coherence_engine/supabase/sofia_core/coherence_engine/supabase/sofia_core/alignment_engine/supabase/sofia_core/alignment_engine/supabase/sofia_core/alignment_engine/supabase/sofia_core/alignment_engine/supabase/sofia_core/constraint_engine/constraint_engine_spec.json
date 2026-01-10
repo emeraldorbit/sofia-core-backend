@@ -1,0 +1,16 @@
+{
+  "constraints": {
+    "safety_min": 0.8,
+    "safety_max": 1.0,
+    "identity_lock": true,
+    "format_enforcement": true,
+    "reject_violations": true
+  },
+  "enforcement": {
+    "validate_safety": true,
+    "validate_identity": true,
+    "validate_format": true,
+    "reject_if_violated": true,
+    "log_constraint_events": true
+  }
+}
