@@ -1,0 +1,12 @@
+{
+  "frontend_bridge": {
+    "expose_api_handler": true,
+    "wrap_pipeline_directly": true,
+    "include_metadata": true,
+    "allow_context_injection": true
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "maintainer": "Emerald Estates® — Sofia Core Governance"
+  }
+}
