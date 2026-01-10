@@ -1,0 +1,12 @@
+{
+  "application_shell": {
+    "auto_initialize": true,
+    "load_integration_layer": true,
+    "allow_runtime_context": true,
+    "expose_app_entry": true
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "maintainer": "Emerald Estates® — Sofia Core Governance"
+  }
+}
