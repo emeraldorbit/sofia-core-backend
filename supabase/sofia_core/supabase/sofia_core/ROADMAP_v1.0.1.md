@@ -1,55 +1,116 @@
-Sofia Core — Roadmap v1.0.1
-Purpose
-This roadmap defines the first post‑release development cycle following the canonical v1.0.0 architecture release.
-It focuses on refinement, stability, expanded testing, and preparation for future subsystem growth.
+# Sofia Core — Roadmap v1.0.2
 
-Objectives
-1. Testing Expansion
-Add deeper unit tests for:
+This roadmap defines the next development cycle following the completion of the deviation engine (v1.0.1).  
+It focuses on strengthening cross‑engine integration, expanding system‑level capabilities, and preparing for v1.1.0.
 
-deviation_engine
+---
 
-membrane_engine
+# Phase 1 — Engine Interoperability (Required)
 
-tonal_engine
+## 1. Membrane ↔ Deviation Integration Audit
+- Ensure membrane tightening logic responds correctly to:
+  - high_drift
+  - critical_drift
+  - stability < 0.5
+- Add cross‑engine tests validating membrane behavior under drift.
 
-sofia_api
+## 2. Identity Filter Stability Awareness
+- Integrate deviation stability scoring into identity filtering.
+- Add rules for:
+  - high drift → stricter persona enforcement
+  - low stability → reduced stylistic variance
 
-sofia_core_index
+## 3. Tonal Engine Drift Sensitivity
+- Tone modulation should adapt to:
+  - direction of drift
+  - magnitude of drift
+  - stability score
 
-Introduce integration tests for the full pipeline chain.
+---
 
-2. Documentation Enhancements
-Expand GLOBAL_README.md with setup and usage examples.
+# Phase 2 — System‑Level Infrastructure
 
-Add module‑level READMEs where missing.
+## 4. Engine Loader Refactor
+- Introduce a unified loader that:
+  - reads VERSION_MAP.json
+  - validates engine presence
+  - ensures version compatibility
+  - exposes a typed engine registry
 
-Add diagrams to MASTER_INDEX.md.
+## 5. Manifest Consolidation
+- Merge:
+  - ENGINE_MANIFEST.md
+  - VERSION_MAP.json
+  - sofia_core_manifest.json
+- into a single canonical manifest with both human and machine layers.
 
-3. Stability Improvements
-Strengthen error boundaries in membrane_engine.
+---
 
-Improve type safety across all engines.
+# Phase 3 — New Engine Foundations
 
-Add runtime guards in sofia_core_bootstrap.ts.
+## 6. Resonance Engine (v1.1.0 milestone)
+A new engine responsible for:
+- conversational resonance
+- alignment with user emotional cadence
+- phase‑locking signals for multi‑turn coherence
 
-4. Developer Experience
-Add local development scripts.
+Inputs:
+- stability
+- tone
+- membrane permeability
+- identity constraints
 
-Improve folder‑level organization notes.
+Outputs:
+- resonance score (0–1)
+- phase vector
+- coherence delta
 
-Add contribution guidelines.
+## 7. Context Horizon Engine
+Controls:
+- how far back context is considered
+- how aggressively context decays
+- how drift affects context retention
 
-5. Optional New Modules (Exploratory)
-resonance_engine (revival candidate)
+---
 
-alignment_engine (integration candidate)
+# Phase 4 — Tooling & Automation
 
-output_sealer (pipeline candidate)
+## 8. Test Harness Expansion
+- Add cross‑engine integration tests
+- Add snapshot tests for multi‑engine pipelines
+- Add drift‑simulation test suite
 
-Governance
-All changes governed under Emerald Estates® — Sofia Core Governance.
-Mode: strict.
+## 9. Release Automation
+- Auto‑generate:
+  - CHANGELOG entries
+  - version bumps
+  - manifest updates
+- Validate engine versions before release
 
-Target Version
-v1.0.1 — Minor refinement and stability release.
+---
+
+# Phase 5 — Documentation & Developer Experience
+
+## 10. Developer Guide
+- Add a full guide explaining:
+  - how to create a new engine
+  - how to write specs
+  - how to write tests
+  - how to register engines
+  - how to update manifests
+
+## 11. Architecture Diagram
+- Produce a visual map of:
+  - all engines
+  - their dependencies
+  - their signals
+  - the pipeline flow
+
+---
+
+# Version Target
+
+**Next Release:** v1.0.2  
+**Milestone Release:** v1.1.0 (Resonance Engine)
+
+This roadmap ensures Sofia Core continues evolving with clarity, structure, and examiner‑ready precision.
