@@ -1,56 +1,66 @@
-Sofia Core — Release Notes v1.0.0
-Overview
-This release marks the first complete, fully structured version of the Sofia Core system.
-It includes all backend engines, the governance pipeline, the API layer, the indexing layer, packaging and distribution layers, the frontend bridge, the integration layer, the application shell, and the universal bootstrap.
+# Sofia Core — Release Notes v1.0.1
 
-Included Subsystems
-Core Engines
-Identity Filter
+## Overview
+Version 1.0.1 introduces the full integration of the Deviation Engine, completing the triad of implementation, specification, and testing required for stable system‑wide reasoning.
 
-Deviation Engine
+This release finalizes Issue #2 and establishes deviation tracking as a first‑class signal within the Sofia Core pipeline.
 
-Membrane Engine
+---
 
-Tonal Engine
+## Key Additions
 
-Pipeline Layer
-Pipeline Integrator
+### 1. Deviation Engine
+A new foundational engine responsible for:
+- drift measurement  
+- directional analysis  
+- alert thresholds  
+- stability scoring  
+- event history tracking  
 
-API & Index Layers
-Sofia API
+This engine provides quantitative signals consumed by:
+- membrane_engine  
+- identity_filter  
+- tonal_engine  
 
-Sofia Core Index
+### 2. Full Specification
+`deviation_engine_spec.json` defines:
+- inputs  
+- state fields  
+- outputs  
+- thresholds  
+- behavioral rules  
 
-System Layers
-Application Shell
+### 3. Test Suite
+`deviation_engine.test.ts` validates:
+- deviation updates  
+- direction detection  
+- alert triggering  
+- stability scoring  
+- history event structure  
+- compute() output integrity  
 
-Integration Layer
+### 4. Global Registration
+The engine is now registered in:
+`supabase/sofia_core/sofia_core_index.ts`
 
-Frontend Bridge
+under the key:
+`deviation_engine`
 
-Distribution Layer
+### 5. Documentation Updates
+Both `GLOBAL_README.md` and `MASTER_INDEX.md` now include:
+- engine description  
+- features  
+- file structure  
+- registration details  
 
-Manifest Layer
+---
 
-Package Layer
+## Impact
+This release strengthens the internal coherence of Sofia Core by introducing a stable, quantitative drift signal that other engines can rely on.  
+It also completes the structural requirements for engine lifecycle consistency: implementation → spec → tests → registration → documentation.
 
-Documentation & Governance
-Global Documentation Layer
+---
 
-Universal Bootstrap
-
-Governance Metadata
-
-Integrity
-Mode: strict
-
-Governance: Emerald Estates® — Sofia Core Governance
-
-Compatibility
-Node 18+
-
-TypeScript 5+
-
-Notes
-This release establishes the complete architectural foundation for all future expansions, bindings, and deployments.
-It also includes a full cleanup of recursive duplicate directories and restoration of canonical module structure.
+## Version
+**Current Version:** 1.0.1  
+**Previous Version:** 1.0.0  
