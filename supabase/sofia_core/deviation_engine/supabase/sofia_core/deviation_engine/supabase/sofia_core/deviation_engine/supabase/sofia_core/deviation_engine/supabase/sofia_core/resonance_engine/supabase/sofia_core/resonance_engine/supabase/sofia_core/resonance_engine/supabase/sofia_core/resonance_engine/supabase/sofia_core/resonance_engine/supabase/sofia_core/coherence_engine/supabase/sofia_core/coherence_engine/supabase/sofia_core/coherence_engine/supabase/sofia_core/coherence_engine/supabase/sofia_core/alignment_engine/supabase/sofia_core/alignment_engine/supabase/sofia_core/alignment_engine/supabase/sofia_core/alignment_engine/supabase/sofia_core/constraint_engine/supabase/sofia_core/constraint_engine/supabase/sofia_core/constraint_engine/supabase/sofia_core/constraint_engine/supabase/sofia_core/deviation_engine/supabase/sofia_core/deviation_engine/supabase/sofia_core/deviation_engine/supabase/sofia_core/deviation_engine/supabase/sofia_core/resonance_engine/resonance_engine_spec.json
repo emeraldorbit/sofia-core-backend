@@ -1,0 +1,18 @@
+{
+  "resonance": {
+    "tone_fit_min": 0.7,
+    "tone_fit_max": 1.0,
+    "emotional_fit_min": 0.6,
+    "emotional_fit_max": 1.0,
+    "identity_harmonic_min": 0.75,
+    "identity_harmonic_max": 1.0,
+    "reject_dissonance": true
+  },
+  "enforcement": {
+    "validate_tone_fit": true,
+    "validate_emotional_fit": true,
+    "validate_identity_harmonic": true,
+    "reject_if_dissonant": true,
+    "log_resonance_events": true
+  }
+}
