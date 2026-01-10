@@ -1,3 +1,17 @@
+## v1.0.1 — In Development
+
+### Added
+- Initialized ROADMAP_v1.0.1.md to define the post‑release cycle.
+
+### Changed
+- (pending)
+
+### Fixed
+- (pending)
+
+### Removed
+- (pending)
+
 # Sofia Core — Changelog
 
 All notable changes to this project will be documented in this file.
