@@ -1,38 +1,40 @@
-## v1.0.1 — In Development
-
-### Added
-- Initialized ROADMAP_v1.0.1.md to define the post‑release cycle.
-
-### Changed
-- (pending)
-
-### Fixed
-- (pending)
-
-### Removed
-- (pending)
-
 # Sofia Core — Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to the Sofia Core system are documented here.  
+This file follows semantic versioning and records engine additions, refinements, and structural updates.
 
 ---
 
-## [1.0.0] — 2026-01-10
+## [1.0.1] — Deviation Engine Integration
+**Date:** 2026‑01‑10  
+**Status:** Complete
 
 ### Added
-- Full backend engine suite (resonance, identity, coherence, deviation, alignment, sealing)
-- Governance pipeline integrator
-- Sofia API handler
-- Core index and manifest layers
-- Package and distribution layers
-- Frontend bridge (spec, runtime, test, README)
-- Integration layer (spec, runtime, test, README)
-- Application shell (spec, runtime, test, README)
-- Universal bootstrap
-- Global documentation layer
-- Release notes and changelog
+- Full implementation of `deviation_engine` including:
+  - deviation tracking (−100 to 100)
+  - direction detection
+  - drift alert thresholds (high, critical)
+  - stability scoring (0.0–1.0)
+  - structured history events
+- Complete specification file (`deviation_engine_spec.json`)
+- Full test suite (`deviation_engine.test.ts`)
+- Export wrapper (`index.ts`)
+- Global registration in `sofia_core_index.ts`
+- Documentation updates in `GLOBAL_README.md` and `MASTER_INDEX.md`
 
-### Integrity
-- Mode: strict
-- Governance: Emerald Estates® — Sofia Core Governance
+### Notes
+This release finalizes Issue #2 and establishes the deviation engine as a foundational signal provider for membrane, identity, and tonal engines.
+
+---
+
+## [1.0.0] — Initial System Release
+**Date:** 2026‑01‑01  
+**Status:** Baseline
+
+### Added
+- Core engine architecture
+- Identity Filter Engine
+- Membrane Engine
+- Tonal Engine
+- Unified index system
+- Initial documentation
