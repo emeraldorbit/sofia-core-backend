@@ -1,0 +1,12 @@
+{
+  "index": {
+    "export_pipeline": true,
+    "export_api": true,
+    "export_engines": true,
+    "include_version_metadata": true
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "maintainer": "Emerald Estates® — Sofia Core Governance"
+  }
+}
