@@ -169,6 +169,30 @@ The Application Shell provides comprehensive error handling:
 - **Initialization errors** - Captured in engine lifecycle state
 - **Context errors** - Thrown if operations are attempted before initialization
 
+## Implementation Notes
+
+### Engine Loading Strategy
+
+The current implementation uses a **placeholder-based engine loading** approach. When `loadEngine()` is called, it registers engine metadata (name, version, descriptor) rather than dynamically importing actual engine modules. This design decision:
+
+1. **Allows the Application Shell infrastructure to function immediately** without requiring complex module resolution
+2. **Provides a working contract** that `sofia_core_bootstrap.ts` can depend on
+3. **Enables dependency validation and lifecycle management** without module imports
+4. **Simplifies testing** by avoiding filesystem and import dependencies
+
+### Future Enhancement Path
+
+In a production deployment, `loadEngine()` should be enhanced to perform actual dynamic imports:
+
+```typescript
+// Future implementation
+const engineModule = await import(descriptor.path);
+const engine = engineModule.default || engineModule[descriptor.registration_key];
+registerEngineInContext(name, engine);
+```
+
+This would enable runtime engine hot-swapping and true modular loading. The current implementation provides the foundation for this enhancement.
+
 ## Testing
 
 Each module can be tested independently:

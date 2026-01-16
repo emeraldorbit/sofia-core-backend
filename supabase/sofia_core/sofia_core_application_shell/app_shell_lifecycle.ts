@@ -96,9 +96,15 @@ export async function loadEngine(name: string): Promise<any> {
   });
   
   try {
-    // For now, we'll register a placeholder since dynamic imports
-    // need actual module paths. In a real implementation, this would
-    // use dynamic import: const engine = await import(descriptor.path);
+    // NOTE: This is a placeholder implementation for the initial Application Shell.
+    // In a production environment, this would use dynamic imports to load actual engine modules:
+    //
+    //   const engineModule = await import(descriptor.path);
+    //   const engine = engineModule.default || engineModule[descriptor.registration_key];
+    //
+    // For now, we register a descriptor-based placeholder that provides the engine
+    // metadata and allows the Application Shell infrastructure to function correctly.
+    // Actual engine functionality should be wired through the integration layer.
     const enginePlaceholder = {
       name: descriptor.name,
       version: descriptor.version,
