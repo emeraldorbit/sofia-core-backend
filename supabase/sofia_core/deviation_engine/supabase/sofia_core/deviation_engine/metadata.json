@@ -1,6 +1,0 @@
-{
-  "engine": "deviation_engine",
-  "version": "1.0.1",
-  "description": "Computes deviation, drift magnitude, and historical deltas for Sofia Core.",
-  "maintainer": "Emerald Orbit"
-}
