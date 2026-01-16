@@ -10,6 +10,13 @@ import {
   registerEngineInContext, 
   getEngineFromContext 
 } from './app_shell_context';
+import {
+  EngineCapabilities,
+  validateCapabilities,
+  getCapabilityGraph,
+  CapabilityGraph,
+  CapabilityValidationResult
+} from './app_shell_capabilities';
 
 export interface EngineDescriptor {
   id: string;
@@ -361,4 +368,79 @@ export async function shutdownAllEngines(context?: any): Promise<void> {
       });
     }
   }
+}
+
+/**
+ * Loads engine capabilities from all engines
+ */
+export async function loadEngineCapabilities(): Promise<Map<string, EngineCapabilities>> {
+  const capabilities = new Map<string, EngineCapabilities>();
+  const descriptors = getEngineDescriptors();
+
+  for (const [engineId, descriptor] of Object.entries(descriptors)) {
+    if (!descriptor.enabled) continue;
+
+    try {
+      // In a real implementation, this would dynamically import the capabilities
+      // For now, we'll use a placeholder that matches the structure
+      // const capModule = await import(`${descriptor.path}/capabilities`);
+      // capabilities.set(engineId, capModule.capabilities);
+      
+      // Placeholder capabilities based on engine structure
+      const placeholderCaps = getPlaceholderCapabilities(engineId);
+      capabilities.set(engineId, placeholderCaps);
+    } catch (error) {
+      console.warn(`Could not load capabilities for engine '${engineId}':`, error);
+      // Default to empty capabilities
+      capabilities.set(engineId, { provides: [], consumes: [] });
+    }
+  }
+
+  return capabilities;
+}
+
+/**
+ * Gets placeholder capabilities for an engine (used until dynamic import is enabled)
+ */
+function getPlaceholderCapabilities(engineId: string): EngineCapabilities {
+  const capabilitiesMap: Record<string, EngineCapabilities> = {
+    'deviation_engine': {
+      provides: ['deviation-analysis', 'drift-detection', 'stability-scoring', 'alert-thresholds'],
+      consumes: []
+    },
+    'identity_filter': {
+      provides: ['identity-validation', 'persona-boundary-enforcement', 'constraint-checking'],
+      consumes: ['deviation-analysis', 'drift-detection']
+    },
+    'membrane_engine': {
+      provides: ['context-permeability-control', 'membrane-tightening', 'drift-aware-boundaries'],
+      consumes: ['deviation-analysis', 'drift-detection']
+    },
+    'tonal_engine': {
+      provides: ['tone-modulation', 'emotional-expression', 'stylistic-consistency'],
+      consumes: ['deviation-analysis', 'identity-validation', 'persona-boundary-enforcement']
+    },
+    'sofia_api': {
+      provides: ['public-api', 'request-handling', 'response-formatting'],
+      consumes: []
+    }
+  };
+
+  return capabilitiesMap[engineId] || { provides: [], consumes: [] };
+}
+
+/**
+ * Validates engine capabilities
+ */
+export async function validateEngineCapabilities(): Promise<CapabilityValidationResult> {
+  const capabilities = await loadEngineCapabilities();
+  return validateCapabilities(capabilities);
+}
+
+/**
+ * Gets the capability graph for all engines
+ */
+export async function getEngineCapabilityGraph(): Promise<CapabilityGraph> {
+  const capabilities = await loadEngineCapabilities();
+  return getCapabilityGraph(capabilities);
 }

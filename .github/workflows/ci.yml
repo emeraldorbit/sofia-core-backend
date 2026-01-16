@@ -65,6 +65,12 @@ jobs:
       - name: Run tests
         run: deno test tests --allow-read
       
+      - name: Run capability validation tests
+        run: |
+          echo "Running capability validation tests..."
+          deno test tests/sofia_core_application_shell/capabilities --allow-read
+          echo "✓ Capability validation tests passed"
+      
       - name: Check for TypeScript errors (if tsc available)
         run: |
           if command -v tsc &> /dev/null; then
