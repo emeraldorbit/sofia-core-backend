@@ -15,7 +15,8 @@ import {
   loadAllEngines, 
   initializeEngine, 
   getEngineDescriptors,
-  EngineDescriptor 
+  EngineDescriptor,
+  shutdownAllEngines
 } from './app_shell_lifecycle';
 
 /**
@@ -26,6 +27,7 @@ export interface RuntimeConfig {
   initializeOnLoad?: boolean;
   customConfig?: Record<string, any>;
   audit?: boolean;
+  testMode?: boolean;
 }
 
 let runtimeInitialized = false;
@@ -106,7 +108,8 @@ export async function initializeSofiaAppShell(
   // Auto-load engines if configured
   if (config.autoLoadEngines !== false) {
     try {
-      const loadedEngines = await loadAllEngines();
+      // Pass context to engines if in test mode
+      const loadedEngines = await loadAllEngines(config.testMode ? context : undefined);
       
       // Optionally initialize engines immediately
       if (config.initializeOnLoad) {
@@ -188,4 +191,22 @@ export function getRuntimeInfo() {
  */
 export function resetRuntime(): void {
   runtimeInitialized = false;
+}
+
+/**
+ * Shuts down the Sofia Application Shell runtime
+ */
+export async function shutdownSofiaAppShell(): Promise<void> {
+  if (!runtimeInitialized) {
+    throw new Error('Runtime not initialized');
+  }
+  
+  try {
+    const context = getContext();
+    await shutdownAllEngines(context);
+    runtimeInitialized = false;
+  } catch (error) {
+    console.error('Error during shutdown:', error);
+    throw error;
+  }
 }
