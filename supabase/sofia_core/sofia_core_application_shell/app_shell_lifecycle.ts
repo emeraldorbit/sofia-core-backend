@@ -12,6 +12,7 @@ import {
 } from './app_shell_context';
 
 export interface EngineDescriptor {
+  id: string;
   name: string;
   version: string;
   path: string;
@@ -33,7 +34,12 @@ const engineStates = new Map<string, EngineLifecycleState>();
  * Gets all engine descriptors from the manifest
  */
 export function getEngineDescriptors(): Record<string, EngineDescriptor> {
-  return manifest.engines as Record<string, EngineDescriptor>;
+  // Convert array format to object format for backward compatibility
+  const descriptorsMap: Record<string, EngineDescriptor> = {};
+  for (const engine of manifest.engines) {
+    descriptorsMap[engine.id] = engine;
+  }
+  return descriptorsMap;
 }
 
 /**
@@ -106,6 +112,7 @@ export async function loadEngine(name: string): Promise<any> {
     // metadata and allows the Application Shell infrastructure to function correctly.
     // Actual engine functionality should be wired through the integration layer.
     const enginePlaceholder = {
+      id: descriptor.id,
       name: descriptor.name,
       version: descriptor.version,
       descriptor

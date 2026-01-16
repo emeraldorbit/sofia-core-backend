@@ -13,6 +13,9 @@ export interface AppShellContext {
     version: string;
     maintainer: string;
   };
+  lifecycle?: {
+    engines: Array<{ id: string; [key: string]: any }>;
+  };
 }
 
 let globalContext: AppShellContext | null = null;
