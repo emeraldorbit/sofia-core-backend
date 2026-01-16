@@ -404,25 +404,25 @@ export async function loadEngineCapabilities(): Promise<Map<string, EngineCapabi
  */
 function getPlaceholderCapabilities(engineId: string): EngineCapabilities {
   const capabilitiesMap: Record<string, EngineCapabilities> = {
-    'deviation_engine': {
-      provides: ['deviation-analysis', 'drift-detection', 'stability-scoring', 'alert-thresholds'],
+    'identity_filter': {
+      provides: ['identity.resolve', 'identity.normalize'],
       consumes: []
     },
-    'identity_filter': {
-      provides: ['identity-validation', 'persona-boundary-enforcement', 'constraint-checking'],
-      consumes: ['deviation-analysis', 'drift-detection']
+    'deviation_engine': {
+      provides: ['deviation.compute', 'deviation.analyze'],
+      consumes: ['identity.resolve']
     },
     'membrane_engine': {
-      provides: ['context-permeability-control', 'membrane-tightening', 'drift-aware-boundaries'],
-      consumes: ['deviation-analysis', 'drift-detection']
+      provides: ['membrane.filter', 'membrane.transform'],
+      consumes: ['identity.resolve', 'deviation.compute']
     },
     'tonal_engine': {
-      provides: ['tone-modulation', 'emotional-expression', 'stylistic-consistency'],
-      consumes: ['deviation-analysis', 'identity-validation', 'persona-boundary-enforcement']
+      provides: ['tone.generate', 'tone.adjust'],
+      consumes: ['identity.normalize', 'membrane.filter']
     },
     'sofia_api': {
-      provides: ['public-api', 'request-handling', 'response-formatting'],
-      consumes: []
+      provides: ['api.respond', 'api.compose'],
+      consumes: ['tone.generate', 'membrane.transform', 'identity.resolve']
     }
   };
 

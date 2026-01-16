@@ -1,18 +1,18 @@
 /**
  * capabilities.ts
  * Capability declaration for membrane_engine
+ * Role: Applies filtering and transformation rules based on identity and deviation
  */
 
 import { EngineCapabilities } from '../sofia_core_application_shell/app_shell_capabilities';
 
 export const capabilities: EngineCapabilities = {
   provides: [
-    'context-permeability-control',
-    'membrane-tightening',
-    'drift-aware-boundaries'
+    'membrane.filter',
+    'membrane.transform'
   ],
   consumes: [
-    'deviation-analysis',
-    'drift-detection'
+    'identity.resolve',
+    'deviation.compute'
   ]
 };

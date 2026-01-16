@@ -29,20 +29,23 @@ describe('Sofia Core Application Shell — Capability Integration', () => {
     expect(graph.nodes.has('sofia_api')).toBe(true);
   });
 
-  test('deviation_engine has no dependencies', async () => {
-    const graph = await getEngineCapabilityGraph();
-    
-    const deviationNode = graph.nodes.get('deviation_engine')!;
-    expect(deviationNode.consumes.length).toBe(0);
-    expect(deviationNode.dependencies.length).toBe(0);
-  });
-
-  test('identity_filter depends on deviation_engine capabilities', async () => {
+  test('identity_filter has no dependencies (base layer)', async () => {
     const graph = await getEngineCapabilityGraph();
     
     const identityNode = graph.nodes.get('identity_filter')!;
-    expect(identityNode.consumes).toContain('deviation-analysis');
-    expect(identityNode.consumes).toContain('drift-detection');
+    expect(identityNode.consumes.length).toBe(0);
+    expect(identityNode.dependencies.length).toBe(0);
+    expect(identityNode.provides).toContain('identity.resolve');
+    expect(identityNode.provides).toContain('identity.normalize');
+  });
+
+  test('deviation_engine depends on identity_filter', async () => {
+    const graph = await getEngineCapabilityGraph();
+    
+    const deviationNode = graph.nodes.get('deviation_engine')!;
+    expect(deviationNode.consumes).toContain('identity.resolve');
+    expect(deviationNode.provides).toContain('deviation.compute');
+    expect(deviationNode.provides).toContain('deviation.analyze');
   });
 
   test('tonal_engine has multiple dependencies', async () => {
@@ -50,8 +53,19 @@ describe('Sofia Core Application Shell — Capability Integration', () => {
     
     const tonalNode = graph.nodes.get('tonal_engine')!;
     expect(tonalNode.consumes.length).toBeGreaterThan(1);
-    expect(tonalNode.consumes).toContain('deviation-analysis');
-    expect(tonalNode.consumes).toContain('identity-validation');
+    expect(tonalNode.consumes).toContain('identity.normalize');
+    expect(tonalNode.consumes).toContain('membrane.filter');
+  });
+
+  test('sofia_api is the final composition layer', async () => {
+    const graph = await getEngineCapabilityGraph();
+    
+    const apiNode = graph.nodes.get('sofia_api')!;
+    expect(apiNode.consumes).toContain('tone.generate');
+    expect(apiNode.consumes).toContain('membrane.transform');
+    expect(apiNode.consumes).toContain('identity.resolve');
+    expect(apiNode.provides).toContain('api.respond');
+    expect(apiNode.provides).toContain('api.compose');
   });
 
   test('capability graph has correct edge structure', async () => {

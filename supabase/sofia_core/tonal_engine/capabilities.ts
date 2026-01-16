@@ -1,19 +1,18 @@
 /**
  * capabilities.ts
  * Capability declaration for tonal_engine
+ * Role: Generates tonal output shaped by identity and membrane filtering
  */
 
 import { EngineCapabilities } from '../sofia_core_application_shell/app_shell_capabilities';
 
 export const capabilities: EngineCapabilities = {
   provides: [
-    'tone-modulation',
-    'emotional-expression',
-    'stylistic-consistency'
+    'tone.generate',
+    'tone.adjust'
   ],
   consumes: [
-    'deviation-analysis',
-    'identity-validation',
-    'persona-boundary-enforcement'
+    'identity.normalize',
+    'membrane.filter'
   ]
 };
