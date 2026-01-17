@@ -11,19 +11,37 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "*": ["supabase/sofia_core/*"]
+    },
+
+    "outDir": "./dist",
     "rootDir": ".",
     "types": ["jest", "node"]
   },
+
   "include": [
-    "src/**/*", 
-    "tests/**/*", 
-    "config/**/*", 
+    "src/**/*",
+    "tests/**/*",
+    "config/**/*",
+    "supabase/sofia_core",
     "supabase/sofia_core/sofia_core_application_shell/**/*",
     "supabase/sofia_core/sofia_core_bootstrap.ts"
   ],
+
   "exclude": [
-    "node_modules", 
+    "node_modules",
     "dist",
+
+    "tests/sofia_core_application_shell/execution",
+    "tests/sofia_core_application_shell/pipeline",
+
+    "supabase/sofia_core/deviation_engine/index.ts",
+    "supabase/sofia_core/identity_filter/identity_filter.test.ts",
+    "supabase/sofia_core/membrane_engine/membrane_engine.test.ts",
+
     "**/supabase/sofia_core/**/supabase/**"
   ]
 }

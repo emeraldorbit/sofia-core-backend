@@ -1,6 +1,7 @@
 {
-  "engines": {
-    "deviation_engine": {
+  "engines": [
+    {
+      "id": "deviation_engine",
       "name": "deviation_engine",
       "version": "1.0.1",
       "path": "../deviation_engine",
@@ -9,7 +10,8 @@
       "dependencies": [],
       "enabled": true
     },
-    "identity_filter": {
+    {
+      "id": "identity_filter",
       "name": "identity_filter",
       "version": "1.0.0",
       "path": "../identity_filter",
@@ -18,7 +20,8 @@
       "dependencies": ["deviation_engine"],
       "enabled": true
     },
-    "membrane_engine": {
+    {
+      "id": "membrane_engine",
       "name": "membrane_engine",
       "version": "1.0.0",
       "path": "../membrane_engine",
@@ -27,7 +30,8 @@
       "dependencies": ["deviation_engine"],
       "enabled": true
     },
-    "tonal_engine": {
+    {
+      "id": "tonal_engine",
       "name": "tonal_engine",
       "version": "1.0.0",
       "path": "../tonal_engine",
@@ -36,7 +40,8 @@
       "dependencies": ["deviation_engine", "identity_filter"],
       "enabled": true
     },
-    "sofia_api": {
+    {
+      "id": "sofia_api",
       "name": "sofia_api",
       "version": "1.0.0",
       "path": "../sofia_api",
@@ -45,7 +50,7 @@
       "dependencies": [],
       "enabled": true
     }
-  },
+  ],
   "metadata": {
     "version": "1.0.0",
     "maintainer": "Emerald Estates® — Sofia Core Governance",

@@ -15,7 +15,8 @@ import {
   loadAllEngines, 
   initializeEngine, 
   getEngineDescriptors,
-  EngineDescriptor 
+  EngineDescriptor,
+  shutdownAllEngines
 } from './app_shell_lifecycle';
 
 /**
@@ -25,6 +26,8 @@ export interface RuntimeConfig {
   autoLoadEngines?: boolean;
   initializeOnLoad?: boolean;
   customConfig?: Record<string, any>;
+  audit?: boolean;
+  testMode?: boolean;
 }
 
 let runtimeInitialized = false;
@@ -56,7 +59,7 @@ export function getEngineRegistry(): Record<string, EngineDescriptor> {
  * Validates the manifest structure
  */
 function validateManifest(): void {
-  if (!manifest.engines || typeof manifest.engines !== 'object') {
+  if (!manifest.engines || !Array.isArray(manifest.engines)) {
     throw new Error('Invalid manifest: missing or invalid engines definition');
   }
   
@@ -65,17 +68,21 @@ function validateManifest(): void {
   }
   
   // Validate each engine entry
-  for (const [key, engine] of Object.entries(manifest.engines)) {
+  for (const engine of manifest.engines) {
+    if (!engine.id || typeof engine.id !== 'string') {
+      throw new Error(`Invalid engine entry: missing or invalid id`);
+    }
+    
     if (!engine.name || typeof engine.name !== 'string') {
-      throw new Error(`Invalid engine entry '${key}': missing or invalid name`);
+      throw new Error(`Invalid engine entry '${engine.id}': missing or invalid name`);
     }
     
     if (!engine.version || typeof engine.version !== 'string') {
-      throw new Error(`Invalid engine '${key}': missing or invalid version`);
+      throw new Error(`Invalid engine '${engine.id}': missing or invalid version`);
     }
     
     if (!Array.isArray(engine.dependencies)) {
-      throw new Error(`Invalid engine '${key}': dependencies must be an array`);
+      throw new Error(`Invalid engine '${engine.id}': dependencies must be an array`);
     }
   }
 }
@@ -101,7 +108,8 @@ export async function initializeSofiaAppShell(
   // Auto-load engines if configured
   if (config.autoLoadEngines !== false) {
     try {
-      const loadedEngines = await loadAllEngines();
+      // Pass context to engines if in test mode
+      const loadedEngines = await loadAllEngines(config.testMode ? context : undefined);
       
       // Optionally initialize engines immediately
       if (config.initializeOnLoad) {
@@ -117,6 +125,16 @@ export async function initializeSofiaAppShell(
       console.error('Failed to load engines:', error);
       throw error;
     }
+  }
+  
+  // Add lifecycle information for audit mode
+  if (config.audit) {
+    context.lifecycle = {
+      engines: Array.from(context.engines.entries()).map(([id, engine]) => ({
+        id,
+        ...engine
+      }))
+    };
   }
   
   runtimeInitialized = true;
@@ -161,8 +179,8 @@ export function getRuntimeInfo() {
     startTime: context.startTime,
     uptime: Date.now() - context.startTime,
     engines: {
-      total: Object.keys(manifest.engines).length,
-      enabled: Object.values(manifest.engines).filter(e => e.enabled).length,
+      total: manifest.engines.length,
+      enabled: manifest.engines.filter(e => e.enabled).length,
       loaded: context.engines.size
     }
   };
@@ -173,4 +191,22 @@ export function getRuntimeInfo() {
  */
 export function resetRuntime(): void {
   runtimeInitialized = false;
+}
+
+/**
+ * Shuts down the Sofia Application Shell runtime
+ */
+export async function shutdownSofiaAppShell(): Promise<void> {
+  if (!runtimeInitialized) {
+    throw new Error('Runtime not initialized');
+  }
+  
+  try {
+    const context = getContext();
+    await shutdownAllEngines(context);
+    runtimeInitialized = false;
+  } catch (error) {
+    console.error('Error during shutdown:', error);
+    throw error;
+  }
 }

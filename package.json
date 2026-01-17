@@ -1,11 +1,12 @@
 {
   "name": "sofia-core-backend",
-  "version": "1.0.0",
-  "description": "Sofia Core Backend - Codex Architecture",
+  "version": "1.0.2",
+  "description": "Sofia Core Backend — Behavioral Governance and Codex Architecture",
   "type": "module",
   "scripts": {
     "test": "jest",
-    "test:codex": "jest tests/codex_architecture"
+    "test:codex": "jest tests/codex_architecture",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "express": "^4.18.0"
@@ -19,5 +20,8 @@
     "supertest": "^6.3.0",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

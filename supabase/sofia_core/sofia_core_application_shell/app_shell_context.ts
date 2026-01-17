@@ -13,6 +13,9 @@ export interface AppShellContext {
     version: string;
     maintainer: string;
   };
+  lifecycle?: {
+    engines: Array<{ id: string; [key: string]: any }>;
+  };
 }
 
 let globalContext: AppShellContext | null = null;
@@ -29,7 +32,8 @@ export function createContext(config: Record<string, any> = {}): AppShellContext
     metadata: {
       version: "1.0.0",
       maintainer: "Emerald Estates® — Sofia Core Governance"
-    }
+    },
+    ...config  // Merge custom properties into root context
   };
 }
 

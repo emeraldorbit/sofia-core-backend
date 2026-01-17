@@ -10,8 +10,16 @@ import {
   registerEngineInContext, 
   getEngineFromContext 
 } from './app_shell_context';
+import {
+  EngineCapabilities,
+  validateCapabilities,
+  getCapabilityGraph,
+  CapabilityGraph,
+  CapabilityValidationResult
+} from './app_shell_capabilities';
 
 export interface EngineDescriptor {
+  id: string;
   name: string;
   version: string;
   path: string;
@@ -27,13 +35,30 @@ export interface EngineLifecycleState {
   error: string | null;
 }
 
+export interface LifecycleLogEntry {
+  type: 'init' | 'shutdown' | 'error';
+  engineId: string;
+  timestamp: number;
+  message?: string;
+  context?: any;
+}
+
 const engineStates = new Map<string, EngineLifecycleState>();
+const lifecycleLogs: LifecycleLogEntry[] = [];
+const engineErrorSimulations = new Map<string, string>();
+let initOrder: string[] = [];
+let shutdownOrder: string[] = [];
 
 /**
  * Gets all engine descriptors from the manifest
  */
 export function getEngineDescriptors(): Record<string, EngineDescriptor> {
-  return manifest.engines as Record<string, EngineDescriptor>;
+  // Convert array format to object format for backward compatibility
+  const descriptorsMap: Record<string, EngineDescriptor> = {};
+  for (const engine of manifest.engines) {
+    descriptorsMap[engine.id] = engine;
+  }
+  return descriptorsMap;
 }
 
 /**
@@ -73,7 +98,7 @@ function validateDependencies(descriptor: EngineDescriptor): void {
 /**
  * Loads an engine dynamically
  */
-export async function loadEngine(name: string): Promise<any> {
+export async function loadEngine(name: string, context?: any): Promise<any> {
   const descriptor = getEngineDescriptor(name);
   
   if (!descriptor.enabled) {
@@ -95,6 +120,23 @@ export async function loadEngine(name: string): Promise<any> {
     error: null
   });
   
+  // Check for simulated errors in test mode
+  if (engineErrorSimulations.has(name)) {
+    const errorMsg = engineErrorSimulations.get(name)!;
+    const state = engineStates.get(name)!;
+    state.error = errorMsg;
+    
+    lifecycleLogs.push({
+      type: 'error',
+      engineId: name,
+      timestamp: Date.now(),
+      message: errorMsg,
+      context
+    });
+    
+    throw new Error(`Engine '${name}' failed: ${errorMsg}`);
+  }
+  
   try {
     // NOTE: This is a placeholder implementation for the initial Application Shell.
     // In a production environment, this would use dynamic imports to load actual engine modules:
@@ -106,9 +148,29 @@ export async function loadEngine(name: string): Promise<any> {
     // metadata and allows the Application Shell infrastructure to function correctly.
     // Actual engine functionality should be wired through the integration layer.
     const enginePlaceholder = {
+      id: descriptor.id,
       name: descriptor.name,
       version: descriptor.version,
-      descriptor
+      descriptor,
+      // Add lifecycle hooks for testing
+      init: async (ctx: any) => {
+        lifecycleLogs.push({
+          type: 'init',
+          engineId: descriptor.id,
+          timestamp: Date.now(),
+          context: ctx
+        });
+        initOrder.push(descriptor.id);
+      },
+      shutdown: async (ctx: any) => {
+        lifecycleLogs.push({
+          type: 'shutdown',
+          engineId: descriptor.id,
+          timestamp: Date.now(),
+          context: ctx
+        });
+        shutdownOrder.push(descriptor.id);
+      }
     };
     
     registerEngineInContext(name, enginePlaceholder);
@@ -116,10 +178,24 @@ export async function loadEngine(name: string): Promise<any> {
     const state = engineStates.get(name)!;
     state.loaded = true;
     
+    // Call init hook if context provided
+    if (context && enginePlaceholder.init) {
+      await enginePlaceholder.init(context);
+    }
+    
     return enginePlaceholder;
   } catch (error) {
     const state = engineStates.get(name)!;
     state.error = error instanceof Error ? error.message : String(error);
+    
+    lifecycleLogs.push({
+      type: 'error',
+      engineId: name,
+      timestamp: Date.now(),
+      message: state.error,
+      context
+    });
+    
     throw error;
   }
 }
@@ -161,7 +237,7 @@ export function initializeEngine(name: string, initConfig: any = {}): any {
 /**
  * Loads all enabled engines in dependency order
  */
-export async function loadAllEngines(): Promise<Map<string, any>> {
+export async function loadAllEngines(context?: any): Promise<Map<string, any>> {
   const descriptors = getEngineDescriptors();
   const loaded = new Map<string, any>();
   const toLoad = new Set(
@@ -180,12 +256,19 @@ export async function loadAllEngines(): Promise<Map<string, any>> {
       
       if (depsLoaded) {
         try {
-          const engine = await loadEngine(name);
+          const engine = await loadEngine(name, context);
           loaded.set(name, engine);
           toLoad.delete(name);
         } catch (error) {
           console.error(`Failed to load engine '${name}':`, error);
-          toLoad.delete(name); // Remove to avoid infinite loop
+          lifecycleLogs.push({
+            type: 'error',
+            engineId: name,
+            timestamp: Date.now(),
+            message: error instanceof Error ? error.message : String(error),
+            context
+          });
+          throw error; // Propagate error to stop loading chain
         }
       }
     }
@@ -221,4 +304,143 @@ export function getAllEngineStates(): Map<string, EngineLifecycleState> {
  */
 export function resetLifecycleState(): void {
   engineStates.clear();
+  lifecycleLogs.length = 0;
+  engineErrorSimulations.clear();
+  initOrder.length = 0;
+  shutdownOrder.length = 0;
+}
+
+/**
+ * Gets lifecycle logs (for testing and debugging)
+ */
+export function getLifecycleLogs(): LifecycleLogEntry[] {
+  return [...lifecycleLogs];
+}
+
+/**
+ * Gets initialization order (for testing)
+ */
+export function getInitOrder(): string[] {
+  return [...initOrder];
+}
+
+/**
+ * Gets shutdown order (for testing)
+ */
+export function getShutdownOrder(): string[] {
+  return [...shutdownOrder];
+}
+
+/**
+ * Sets error simulation for testing
+ */
+export function setEngineErrorSimulation(engineId: string, errorMessage: string): void {
+  engineErrorSimulations.set(engineId, errorMessage);
+}
+
+/**
+ * Clears error simulations
+ */
+export function clearEngineErrorSimulations(): void {
+  engineErrorSimulations.clear();
+}
+
+/**
+ * Shuts down all engines in reverse init order
+ */
+export async function shutdownAllEngines(context?: any): Promise<void> {
+  const engines = [...initOrder].reverse();
+  
+  for (const engineId of engines) {
+    try {
+      const engine = getEngineFromContext(engineId);
+      if (engine && engine.shutdown && typeof engine.shutdown === 'function') {
+        await engine.shutdown(context);
+      }
+    } catch (error) {
+      console.error(`Error shutting down engine '${engineId}':`, error);
+      lifecycleLogs.push({
+        type: 'error',
+        engineId,
+        timestamp: Date.now(),
+        message: error instanceof Error ? error.message : String(error),
+        context
+      });
+    }
+  }
+}
+
+/**
+ * Loads engine capabilities from all engines
+ */
+export async function loadEngineCapabilities(): Promise<Map<string, EngineCapabilities>> {
+  const capabilities = new Map<string, EngineCapabilities>();
+  const descriptors = getEngineDescriptors();
+
+  for (const [engineId, descriptor] of Object.entries(descriptors)) {
+    if (!descriptor.enabled) continue;
+
+    try {
+      // In a real implementation, this would dynamically import the capabilities
+      // For now, we'll use a placeholder that matches the structure
+      // const capModule = await import(`${descriptor.path}/capabilities`);
+      // capabilities.set(engineId, capModule.capabilities);
+      
+      // Placeholder capabilities based on engine structure
+      const placeholderCaps = getPlaceholderCapabilities(engineId);
+      capabilities.set(engineId, placeholderCaps);
+    } catch (error) {
+      console.warn(`Could not load capabilities for engine '${engineId}':`, error);
+      // Default to empty capabilities
+      capabilities.set(engineId, { provides: [], consumes: [] });
+    }
+  }
+
+  return capabilities;
+}
+
+/**
+ * Gets placeholder capabilities for an engine (used until dynamic import is enabled)
+ */
+function getPlaceholderCapabilities(engineId: string): EngineCapabilities {
+  const capabilitiesMap: Record<string, EngineCapabilities> = {
+    'identity_filter': {
+      provides: ['identity.resolve', 'identity.normalize'],
+      consumes: []
+    },
+    'deviation_engine': {
+      provides: ['deviation.compute', 'deviation.analyze'],
+      consumes: ['identity.resolve']
+    },
+    'membrane_engine': {
+      provides: ['membrane.filter', 'membrane.transform'],
+      consumes: ['identity.resolve', 'deviation.compute']
+    },
+    'tonal_engine': {
+      provides: ['tone.generate', 'tone.adjust'],
+      consumes: ['identity.normalize', 'membrane.filter']
+    },
+    'sofia_api': {
+      provides: ['api.respond', 'api.compose'],
+      consumes: ['tone.generate', 'membrane.transform', 'identity.resolve']
+    }
+  };
+
+  return capabilitiesMap[engineId] || { provides: [], consumes: [] };
+}
+
+/**
+ * Validates engine capabilities
+ */
+export async function validateEngineCapabilities(): Promise<CapabilityValidationResult> {
+  const capabilities = await loadEngineCapabilities();
+  return validateCapabilities(capabilities);
+}
+
+/**
+ * Gets the capability graph for all engines
+ */
+export async function getEngineCapabilityGraph(): Promise<CapabilityGraph> {
+  const capabilities = await loadEngineCapabilities();
+  return getCapabilityGraph(capabilities);
 }
