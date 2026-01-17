@@ -119,3 +119,87 @@ export function validatePipeline(
     missingCapabilities
   };
 }
+
+/**
+ * Builds a reverse capability index for O(1) provider lookup.
+ * 
+ * @param graph - Capability graph from runtime
+ * @returns Map of capability name to engine ID
+ */
+function buildProviderIndex(graph: Record<string, { provides: string[]; consumes?: string[] }>): Record<string, string> {
+  const providerFor: Record<string, string> = {};
+  
+  for (const [engineId, caps] of Object.entries(graph)) {
+    for (const capability of caps.provides) {
+      providerFor[capability] = engineId;
+    }
+  }
+  
+  return providerFor;
+}
+
+/**
+ * Recursively resolves dependencies for a capability.
+ * 
+ * @param capability - The capability to resolve dependencies for
+ * @param graph - Capability graph from runtime
+ * @param providerFor - Reverse capability index
+ * @param resolved - Set to track resolved capabilities
+ * @param seen - Set to prevent infinite loops
+ */
+function resolveDeps(
+  capability: string,
+  graph: Record<string, { provides: string[]; consumes?: string[] }>,
+  providerFor: Record<string, string>,
+  resolved: Set<string>,
+  seen: Set<string>
+): void {
+  if (seen.has(capability)) return; // Prevents infinite loops
+  seen.add(capability);
+
+  const provider = providerFor[capability];
+  if (!provider) {
+    throw new Error(`No provider for capability: ${capability}`);
+  }
+
+  const consumes = graph[provider].consumes ?? [];
+
+  // Recursively resolve all dependencies first
+  for (const dep of consumes) {
+    resolveDeps(dep, graph, providerFor, resolved, new Set(seen));
+    resolved.add(dep);
+  }
+}
+
+/**
+ * Automatically expands a pipeline to include all required dependencies.
+ * 
+ * This function analyzes the capability graph and ensures that all
+ * dependencies are included in the correct order before their dependents.
+ * 
+ * Example:
+ *   Input:  ["tone.generate"]
+ *   Output: ["identity.resolve", "identity.normalize", "deviation.compute", 
+ *            "membrane.filter", "tone.generate"]
+ * 
+ * @param runtime - Runtime context with getCapabilityGraph() method
+ * @param steps - Array of capability names (step objects not supported)
+ * @returns Expanded array of capabilities in dependency order
+ */
+export function expandPipeline(
+  runtime: { getCapabilityGraph: () => Record<string, { provides: string[]; consumes?: string[] }> },
+  steps: string[]
+): string[] {
+  const graph = runtime.getCapabilityGraph();
+  const providerFor = buildProviderIndex(graph);
+  const expanded = new Set<string>();
+
+  // Resolve dependencies for each step
+  for (const step of steps) {
+    resolveDeps(step, graph, providerFor, expanded, new Set());
+    expanded.add(step);
+  }
+
+  // Return array maintaining insertion order (Set maintains order)
+  return Array.from(expanded);
+}
