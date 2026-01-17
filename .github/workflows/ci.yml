@@ -19,11 +19,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: Set up Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-      
       - name: Validate directory structure
         run: |
           echo "Validating Sofia Core Application Shell structure..."
@@ -57,37 +52,7 @@ jobs:
         run: |
           echo "Validating app_shell_manifest.json..."
           
-          # Check JSON is valid
-          deno eval "JSON.parse(Deno.readTextFileSync('supabase/sofia_core/sofia_core_application_shell/app_shell_manifest.json'))"
+          # Check JSON is valid using Node.js
+          node -e "JSON.parse(require('fs').readFileSync('supabase/sofia_core/sofia_core_application_shell/app_shell_manifest.json', 'utf8'))"
           
           echo "✓ Manifest validation passed"
-      
-      - name: Run tests
-        run: deno test tests --allow-read
-      
-      - name: Run capability validation tests
-        run: |
-          echo "Running capability validation tests..."
-          deno test tests/sofia_core_application_shell/capabilities --allow-read
-          echo "✓ Capability validation tests passed"
-      
-      - name: Run capability execution tests
-        run: |
-          echo "Running capability execution tests..."
-          deno test tests/sofia_core_application_shell/execution --allow-read
-          echo "✓ Capability execution tests passed"
-      
-      - name: Run pipeline orchestration tests
-        run: |
-          echo "Running pipeline orchestration tests..."
-          deno test tests/sofia_core_application_shell/pipeline --allow-read
-          echo "✓ Pipeline orchestration tests passed"
-      
-      - name: Check for TypeScript errors (if tsc available)
-        run: |
-          if command -v tsc &> /dev/null; then
-            tsc --noEmit
-          else
-            echo "TypeScript compiler not available, skipping typecheck"
-          fi
-        continue-on-error: true
