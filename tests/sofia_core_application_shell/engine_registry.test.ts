@@ -22,7 +22,7 @@ describe('Sofia Core Application Shell — Engine Registry Audit', () => {
     expect(runtime.lifecycle).toBeDefined();
     expect(runtime.lifecycle?.engines).toBeDefined();
     
-    const registeredEngines = runtime.lifecycle.engines.map(e => e.id);
+    const registeredEngines = runtime.lifecycle!.engines.map(e => e.id);
 
     for (const engineId of expectedEngines) {
       expect(registeredEngines).toContain(engineId);

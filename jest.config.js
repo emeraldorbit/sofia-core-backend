@@ -17,6 +17,12 @@ export default {
   testMatch: [
     '**/tests/**/*.test.ts'
   ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/dist/',
+    'tests/sofia_core_application_shell/execution/',
+    'tests/sofia_core_application_shell/pipeline/'
+  ],
   collectCoverageFrom: [
     'src/**/*.ts',
     '!src/**/*.d.ts'

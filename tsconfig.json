@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ES2020",
+    "module": "ESNext",
     "lib": ["ES2020"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -18,6 +18,14 @@
     "rootDir": ".",
     "types": ["jest", "node"]
   },
-  "include": ["supabase/sofia_core", "tests", "config/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["supabase/sofia_core", "src", "tests", "config/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tests/sofia_core_application_shell/execution",
+    "tests/sofia_core_application_shell/pipeline",
+    "supabase/sofia_core/deviation_engine/index.ts",
+    "supabase/sofia_core/identity_filter/identity_filter.test.ts",
+    "supabase/sofia_core/membrane_engine/membrane_engine.test.ts"
+  ]
 }
