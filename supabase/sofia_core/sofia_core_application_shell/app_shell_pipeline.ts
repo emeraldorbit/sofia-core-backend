@@ -203,3 +203,139 @@ export function expandPipeline(
   // Return array maintaining insertion order (Set maintains order)
   return Array.from(expanded);
 }
+
+/**
+ * Optimizes a pipeline by removing duplicates, enforcing correct ordering,
+ * and grouping engine-local steps to reduce context switching.
+ * 
+ * Optimization strategies:
+ * 1. Remove duplicate capabilities
+ * 2. Maintain dependency order (dependencies before dependents)
+ * 3. Group capabilities from the same engine together when possible
+ * 
+ * Example:
+ *   Input:  ["identity.resolve", "deviation.compute", "identity.normalize", "identity.resolve"]
+ *   Output: ["identity.resolve", "identity.normalize", "deviation.compute"]
+ * 
+ * @param runtime - Runtime context with getCapabilityGraph() and getEngineForCapability() methods
+ * @param steps - Array of capability names to optimize
+ * @returns Optimized array of capabilities
+ */
+export function optimizePipeline(
+  runtime: {
+    getCapabilityGraph: () => Record<string, { provides: string[]; consumes?: string[] }>;
+    getEngineForCapability?: (cap: string) => string | undefined;
+  },
+  steps: string[]
+): string[] {
+  // Step 1: Remove duplicates while preserving first occurrence
+  const seen = new Set<string>();
+  const deduplicated: string[] = [];
+  
+  for (const step of steps) {
+    if (!seen.has(step)) {
+      seen.add(step);
+      deduplicated.push(step);
+    }
+  }
+
+  // Step 2: Build dependency graph for ordering
+  const graph = runtime.getCapabilityGraph();
+  const providerFor = buildProviderIndex(graph);
+  
+  // Build a map of what each capability depends on
+  const dependencies = new Map<string, Set<string>>();
+  for (const capability of deduplicated) {
+    const provider = providerFor[capability];
+    if (provider) {
+      const deps = new Set<string>();
+      const consumes = graph[provider].consumes ?? [];
+      for (const dep of consumes) {
+        deps.add(dep);
+      }
+      dependencies.set(capability, deps);
+    }
+  }
+
+  // Step 3: Group by engine if getEngineForCapability is available
+  if (runtime.getEngineForCapability) {
+    const engineGroups = new Map<string, string[]>();
+    
+    for (const capability of deduplicated) {
+      const engine = runtime.getEngineForCapability(capability);
+      if (engine) {
+        if (!engineGroups.has(engine)) {
+          engineGroups.set(engine, []);
+        }
+        engineGroups.get(engine)!.push(capability);
+      }
+    }
+
+    // Step 4: Topological sort with engine grouping
+    const result: string[] = [];
+    const completed = new Set<string>();
+    
+    // Helper function to check if all dependencies are satisfied
+    const canExecute = (capability: string): boolean => {
+      const deps = dependencies.get(capability);
+      if (!deps) return true;
+      for (const dep of deps) {
+        if (deduplicated.includes(dep) && !completed.has(dep)) {
+          return false;
+        }
+      }
+      return true;
+    };
+
+    // Process capabilities in engine groups
+    const remaining = new Set(deduplicated);
+    
+    while (remaining.size > 0) {
+      let addedAny = false;
+      
+      // Try to add complete engine groups
+      for (const [engine, capabilities] of engineGroups.entries()) {
+        const groupCapabilities = capabilities.filter(cap => remaining.has(cap));
+        
+        // Check if all capabilities in this group can execute
+        const allCanExecute = groupCapabilities.every(canExecute);
+        
+        if (allCanExecute && groupCapabilities.length > 0) {
+          // Add all capabilities from this engine group
+          for (const cap of groupCapabilities) {
+            result.push(cap);
+            completed.add(cap);
+            remaining.delete(cap);
+            addedAny = true;
+          }
+        }
+      }
+      
+      // If no complete groups can be added, add individual capabilities
+      if (!addedAny) {
+        for (const capability of remaining) {
+          if (canExecute(capability)) {
+            result.push(capability);
+            completed.add(capability);
+            remaining.delete(capability);
+            addedAny = true;
+            break;
+          }
+        }
+      }
+      
+      // Safety check: if nothing was added, we have a problem
+      if (!addedAny) {
+        // Just return remaining in original order to avoid infinite loop
+        result.push(...Array.from(remaining));
+        break;
+      }
+    }
+    
+    return result;
+  }
+
+  // Step 4: If no engine grouping available, just return deduplicated in order
+  // (dependency order is already maintained by expansion)
+  return deduplicated;
+}
