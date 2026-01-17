@@ -77,6 +77,12 @@ jobs:
           deno test tests/sofia_core_application_shell/execution --allow-read
           echo "✓ Capability execution tests passed"
       
+      - name: Run pipeline orchestration tests
+        run: |
+          echo "Running pipeline orchestration tests..."
+          deno test tests/sofia_core_application_shell/pipeline --allow-read
+          echo "✓ Pipeline orchestration tests passed"
+      
       - name: Check for TypeScript errors (if tsc available)
         run: |
           if command -v tsc &> /dev/null; then
