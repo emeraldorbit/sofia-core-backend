@@ -1,4 +1,5 @@
 {
+  "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "compilerOptions": {
     "allowJs": true,
     "lib": ["deno.window"],
@@ -13,5 +14,9 @@
   "test": {
     "include": ["tests/**/*.test.ts", "supabase/**/*.test.ts"]
   },
+  // Note: sloppy-imports is an unstable feature that allows Deno to automatically
+  // resolve .ts extensions in imports. This enables compatibility with Jest/Node.js
+  // style imports without explicit .ts extensions. Monitor Deno release notes for
+  // when this feature becomes stable.
   "unstable": ["sloppy-imports"]
 }
