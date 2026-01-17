@@ -32,7 +32,8 @@ export function createContext(config: Record<string, any> = {}): AppShellContext
     metadata: {
       version: "1.0.0",
       maintainer: "Emerald Estates® — Sofia Core Governance"
-    }
+    },
+    ...config  // Merge custom properties into root context
   };
 }
 
