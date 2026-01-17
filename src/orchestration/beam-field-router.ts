@@ -5,8 +5,8 @@
  * Part of the Codex Architecture for Sofia Core.
  */
 
-import { BeamEngine } from '../engines/beam-engine.ts';
-import { FieldBeamEngine } from '../engines/field-beam-engine.ts';
+import { BeamEngine } from '../engines/beam-engine';
+import { FieldBeamEngine } from '../engines/field-beam-engine';
 
 export interface RoutingEnvironment {
   world: string;

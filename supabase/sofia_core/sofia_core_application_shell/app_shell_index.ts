@@ -13,7 +13,7 @@ import {
   getEngineRegistry,
   appShellMetadata,
   RuntimeConfig
-} from './app_shell_runtime.ts';
+} from './app_shell_runtime';
 
 import {
   getContext,
@@ -21,7 +21,7 @@ import {
   listRegisteredEngines,
   getEngineFromContext,
   AppShellContext
-} from './app_shell_context.ts';
+} from './app_shell_context';
 
 import {
   loadEngine,
@@ -31,7 +31,7 @@ import {
   getEngineDescriptor,
   EngineDescriptor,
   EngineLifecycleState
-} from './app_shell_lifecycle.ts';
+} from './app_shell_lifecycle';
 
 /**
  * Primary initialization function - bootstraps the entire Sofia Core

@@ -4,12 +4,12 @@
  * Handles loading, initialization, and state management of engines.
  */
 
-import manifest from './app_shell_manifest.json' with { type: 'json' };
+import manifest from './app_shell_manifest.json';
 import { 
   getContext, 
   registerEngineInContext, 
   getEngineFromContext 
-} from './app_shell_context.ts';
+} from './app_shell_context';
 
 export interface EngineDescriptor {
   name: string;

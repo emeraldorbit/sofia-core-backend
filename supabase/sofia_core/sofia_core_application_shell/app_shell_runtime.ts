@@ -4,19 +4,19 @@
  * This is the core orchestration layer that coordinates engine loading and lifecycle.
  */
 
-import manifest from './app_shell_manifest.json' with { type: 'json' };
+import manifest from './app_shell_manifest.json';
 import { 
   initializeContext, 
   getContext, 
   isContextInitialized,
   AppShellContext 
-} from './app_shell_context.ts';
+} from './app_shell_context';
 import { 
   loadAllEngines, 
   initializeEngine, 
   getEngineDescriptors,
   EngineDescriptor 
-} from './app_shell_lifecycle.ts';
+} from './app_shell_lifecycle';
 
 /**
  * Runtime configuration options
