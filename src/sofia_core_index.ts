@@ -3,10 +3,10 @@
  * Stub implementation for CI compatibility
  */
 
-import { deviationEngine } from './deviation_engine';
-import { identityFilter } from './identity_filter';
-import { membraneEngine } from './membrane_engine';
-import { tonalEngine } from './tonal_engine';
+import { deviationEngine } from './deviation_engine.ts';
+import { identityFilter } from './identity_filter.ts';
+import { membraneEngine } from './membrane_engine.ts';
+import { tonalEngine } from './tonal_engine.ts';
 
 export const engines = {
   deviation_engine: deviationEngine,
