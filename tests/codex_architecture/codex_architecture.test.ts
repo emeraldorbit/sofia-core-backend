@@ -8,12 +8,12 @@
  * - Profiling accuracy
  */
 
-import { BeamEngine } from '../../src/engines/beam-engine';
-import { FieldBeamEngine } from '../../src/engines/field-beam-engine';
-import { BeamFieldRouter } from '../../src/orchestration/beam-field-router';
-import { DominionFallback } from '../../src/orchestration/dominion-fallback';
-import { ContinuumPipeline } from '../../src/pipeline/continuum-pipeline';
-import horizonConfig from '../../config/horizon.json';
+import { BeamEngine } from '../../src/engines/beam-engine.ts';
+import { FieldBeamEngine } from '../../src/engines/field-beam-engine.ts';
+import { BeamFieldRouter } from '../../src/orchestration/beam-field-router.ts';
+import { DominionFallback } from '../../src/orchestration/dominion-fallback.ts';
+import { ContinuumPipeline } from '../../src/pipeline/continuum-pipeline.ts';
+import horizonConfig from '../../config/horizon.json' with { type: 'json' };
 
 describe('Apex Validation Suite - Engine Registration', () => {
   describe('BeamEngine', () => {

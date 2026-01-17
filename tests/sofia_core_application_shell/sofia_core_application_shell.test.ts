@@ -13,7 +13,7 @@ import {
   registerEngineInContext,
   getEngineFromContext,
   listRegisteredEngines
-} from "../../supabase/sofia_core/sofia_core_application_shell/app_shell_context";
+} from "../../supabase/sofia_core/sofia_core_application_shell/app_shell_context.ts";
 
 import {
   getEngineDescriptors,
@@ -21,7 +21,7 @@ import {
   loadEngine,
   getEngineState,
   resetLifecycleState
-} from "../../supabase/sofia_core/sofia_core_application_shell/app_shell_lifecycle";
+} from "../../supabase/sofia_core/sofia_core_application_shell/app_shell_lifecycle.ts";
 
 import {
   initializeSofiaAppShell,
@@ -31,11 +31,11 @@ import {
   getEngineRegistry,
   appShellMetadata,
   resetRuntime
-} from "../../supabase/sofia_core/sofia_core_application_shell/app_shell_runtime";
+} from "../../supabase/sofia_core/sofia_core_application_shell/app_shell_runtime.ts";
 
-import appShell from "../../supabase/sofia_core/sofia_core_application_shell/app_shell_index";
+import appShell from "../../supabase/sofia_core/sofia_core_application_shell/app_shell_index.ts";
 
-import { bootstrapSofiaCore } from "../../supabase/sofia_core/sofia_core_bootstrap";
+import { bootstrapSofiaCore } from "../../supabase/sofia_core/sofia_core_bootstrap.ts";
 
 describe("Application Shell - Context Management", () => {
   beforeEach(() => {
