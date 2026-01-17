@@ -14,7 +14,7 @@ export const deviationEngine = {
     };
   },
 
-  update(state, input) {
+  update(state: any, input: any) {
     const delta = input?.delta ?? 0;
 
     // compute next deviation
@@ -71,7 +71,7 @@ export const deviationEngine = {
     };
   },
 
-  compute(state) {
+  compute(state: any) {
     return {
       deviation: state.deviation,
       magnitude: Math.abs(state.deviation),
