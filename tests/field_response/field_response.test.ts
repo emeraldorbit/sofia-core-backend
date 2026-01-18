@@ -22,7 +22,7 @@ describe('field_response', () => {
   });
 
   test('handles object input', () => {
-    const rule = (x: unknown) => ({ ...(x as any), processed: true });
+    const rule = (x: unknown) => ({ ...(x as Record<string, unknown>), processed: true });
     const input = { value: 42 };
     expect(generateResponse(input, rule)).toEqual({ value: 42, processed: true });
   });

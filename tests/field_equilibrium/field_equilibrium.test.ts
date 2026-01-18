@@ -18,6 +18,6 @@ describe('field_equilibrium', () => {
   });
 
   test('handles decimal values', () => {
-    expect(computeEquilibrium([1.5, 2.5, 3.0])).toBeCloseTo(2.333, 2);
+    expect(computeEquilibrium([1.5, 2.5, 3.0])).toBeCloseTo(2.3333333333, 2);
   });
 });
