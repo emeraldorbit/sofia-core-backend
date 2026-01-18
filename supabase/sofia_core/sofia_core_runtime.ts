@@ -76,6 +76,9 @@ import { expressApexState } from './field_expression_apex/field_expression_apex'
 import { expandFieldState } from './field_expansion/field_expansion';
 import { mapHorizonState } from './field_horizon_mapping/field_horizon_mapping';
 import { continueHorizonState } from './field_horizon_continuity/field_horizon_continuity';
+import { returnToOrigin } from './field_origin/field_origin';
+import { generateFieldState } from './field_generation/field_generation';
+import { continueGenesis } from './field_genesis_continuum/field_genesis_continuum';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -376,4 +379,18 @@ export const fieldHorizon = {
   expandFieldState,
   mapHorizonState,
   continueHorizonState,
+};
+
+/**
+ * Field Genesis Triad - Unified interface for the twenty-fourth triad
+ * 
+ * Provides origin-state reinstatement, generative field creation,
+ * and renewal continuity through a single integration point.
+ * Returns the horizon field to its origin-seed, generates new structures,
+ * and integrates them into the ongoing continuum.
+ */
+export const fieldGenesis = {
+  returnToOrigin,
+  generateFieldState,
+  continueGenesis,
 };
