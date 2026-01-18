@@ -14,7 +14,7 @@
  * @param input - The initial input to process
  * @returns The final output after all module processing
  */
-export function orchestrate(modules: Record<string, Function>, input: unknown): unknown {
+export function orchestrate(modules: Record<string, (input: any) => any>, input: unknown): unknown {
   // Coordinate module execution in sequence
   let output = input;
   for (const key of Object.keys(modules)) {
