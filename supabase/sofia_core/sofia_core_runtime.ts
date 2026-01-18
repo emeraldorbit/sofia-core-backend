@@ -19,6 +19,9 @@ import { synthesizeSignature } from './signature_synthesizer/signature_synthesiz
 import { modulateSemantics } from './semantic_modulator/semantic_modulator';
 import { routeSignature } from './signature_router/signature_router';
 import { synthesizeIdentity } from './identity_synthesizer/identity_synthesizer';
+import { generateExpression } from './expression_engine/expression_engine';
+import { weaveContext } from './context_weaver/context_weaver';
+import { applyHarmonics } from './signature_harmonics/signature_harmonics';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -66,4 +69,16 @@ export const semanticModulation = {
   modulateSemantics,
   routeSignature,
   synthesizeIdentity,
+};
+
+/**
+ * Expressive Synthesis Triad - Unified interface for the fifth triad
+ * 
+ * Provides structured multi-layer expression, contextual weaving, and harmonic
+ * identity shaping through a single integration point for expressive synthesis.
+ */
+export const expressiveSynthesis = {
+  generateExpression,
+  weaveContext,
+  applyHarmonics,
 };
