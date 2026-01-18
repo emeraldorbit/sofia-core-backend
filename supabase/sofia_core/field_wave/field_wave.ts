@@ -21,7 +21,7 @@ export function generateWave(
 ): Array<number> {
   const wave = [];
   for (let i = 0; i < frequency; i++) {
-    wave.push(Math.sin((i / frequency) * Math.PI * 2) * amplitude);
+    wave.push(Math.sin((i * 2 * Math.PI) / frequency) * amplitude);
   }
   return wave;
 }
