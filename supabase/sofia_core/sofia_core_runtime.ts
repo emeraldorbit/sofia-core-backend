@@ -91,6 +91,9 @@ import { continueHorizonStateII } from './field_horizon_continuity_ii/field_hori
 import { stabilizeFieldCycleIII } from './field_cycle_stabilization_iii/field_cycle_stabilization_iii';
 import { extendFieldContinuumIII } from './field_continuum_extension_iii/field_continuum_extension_iii';
 import { synthesizeFieldContinuumIII } from './field_continuum_synthesis_iii/field_continuum_synthesis_iii';
+import { establishAuthorityCycleIII } from './field_authority_cycle_iii/field_authority_cycle_iii';
+import { projectDominionIII } from './field_dominion_projection_iii/field_dominion_projection_iii';
+import { continueDominionIII } from './field_dominion_continuity_iii/field_dominion_continuity_iii';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -461,4 +464,18 @@ export const fieldContinuumIII = {
   stabilizeFieldCycleIII,
   extendFieldContinuumIII,
   synthesizeFieldContinuumIII,
+};
+
+/**
+ * Field Dominion-III Triad - Unified interface for the thirtieth triad
+ * 
+ * Provides third-order authority establishment over the unified continuum,
+ * third-order dominion projection across domains, and persistent third-order
+ * dominion continuity through a single integration point. Transforms third-order
+ * continuity into governance, from flow to structural command.
+ */
+export const fieldDominionIII = {
+  establishAuthorityCycleIII,
+  projectDominionIII,
+  continueDominionIII,
 };
