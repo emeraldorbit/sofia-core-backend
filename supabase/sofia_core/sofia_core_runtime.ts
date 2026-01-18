@@ -25,6 +25,9 @@ import { applyHarmonics } from './signature_harmonics/signature_harmonics';
 import { conductResonance } from './resonance_conductor/resonance_conductor';
 import { bindCoherence } from './coherence_binder/coherence_binder';
 import { resonateIdentity } from './identity_resonator/identity_resonator';
+import { stabilizeCurrent } from './field_current/field_current';
+import { applyTide } from './field_tide/field_tide';
+import { generateWave } from './field_wave/field_wave';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -97,4 +100,18 @@ export const integrativeResonance = {
   conductResonance,
   bindCoherence,
   resonateIdentity,
+};
+
+/**
+ * Field Stabilization Triad - Unified interface for the seventh triad
+ * 
+ * Provides baseline field stabilization, rhythmic modulation, and oscillatory
+ * field patterns through a single integration point for field stabilization
+ * capabilities. Ensures Sofia's internal field remains predictable, anchored,
+ * and dynamically balanced across all operational states.
+ */
+export const fieldStabilization = {
+  stabilizeCurrent,
+  applyTide,
+  generateWave,
 };
