@@ -25,10 +25,10 @@ export type AuthorityCycleState<T> = {
  * @param authorityFn - Function that applies authority-formation logic
  * @returns Authority cycle state with authoritative=true and authoritative value
  */
-export function establishAuthorityCycle<T>(
+export function establishAuthorityCycle<T, R = T>(
   continuumSynthesis: T,
-  authorityFn: (value: T) => T
-): AuthorityCycleState<T> {
+  authorityFn: (value: T) => R
+): AuthorityCycleState<R> {
   const value = authorityFn(continuumSynthesis);
   return {
     authoritative: true,

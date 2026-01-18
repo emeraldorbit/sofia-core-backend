@@ -25,10 +25,10 @@ export type DominionContinuityState<T> = {
  * @param continuer - Function that applies dominion-continuity logic
  * @returns Dominion continuity state with continuous=true and continuous value
  */
-export function continueDominion<T>(
+export function continueDominion<T, R = T>(
   dominionProjection: T,
-  continuer: (value: T) => T
-): DominionContinuityState<T> {
+  continuer: (value: T) => R
+): DominionContinuityState<R> {
   const value = continuer(dominionProjection);
   return {
     continuous: true,

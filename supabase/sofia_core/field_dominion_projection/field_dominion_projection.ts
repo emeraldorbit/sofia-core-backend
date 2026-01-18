@@ -25,10 +25,10 @@ export type DominionProjectionState<T> = {
  * @param projector - Function that applies dominion-projection logic
  * @returns Dominion projection state with projected=true and projected value
  */
-export function projectDominion<T>(
+export function projectDominion<T, R = T>(
   authorityCycle: T,
-  projector: (value: T) => T
-): DominionProjectionState<T> {
+  projector: (value: T) => R
+): DominionProjectionState<R> {
   const value = projector(authorityCycle);
   return {
     projected: true,
