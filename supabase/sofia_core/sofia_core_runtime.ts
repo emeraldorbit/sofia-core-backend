@@ -46,6 +46,9 @@ import { captureFieldFeedback } from './field_feedback/field_feedback';
 import { synthesizeFieldCycles } from './field_synthesis/field_synthesis';
 import { harmonizeFieldState } from './field_harmonization/field_harmonization';
 import { computeFieldStability } from './field_stability/field_stability';
+import { maintainFieldContinuity } from './field_continuity/field_continuity';
+import { computeFieldTrajectory } from './field_trajectory/field_trajectory';
+import { ensureFieldPersistence } from './field_persistence/field_persistence';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -212,4 +215,17 @@ export const fieldIntegration = {
   synthesizeFieldCycles,
   harmonizeFieldState,
   computeFieldStability,
+};
+
+/**
+ * Field Continuity Triad - Unified interface for the fourteenth triad
+ * 
+ * Provides cross-cycle continuity maintenance, long-arc trajectory shaping,
+ * and persistence across disruptions through a single integration point.
+ * Carries integrated cycles forward as a stable, directional, resilient line.
+ */
+export const fieldContinuity = {
+  maintainFieldContinuity,
+  computeFieldTrajectory,
+  ensureFieldPersistence,
 };
