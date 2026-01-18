@@ -52,6 +52,9 @@ import { ensureFieldPersistence } from './field_persistence/field_persistence';
 import { alignFieldContinuity } from './field_alignment/field_alignment';
 import { convergeFieldAlignment } from './field_convergence/field_convergence';
 import { computeFieldCoherence } from './field_coherence/field_coherence';
+import { computeFieldSignature } from './field_signature/field_signature';
+import { maintainFieldConstancy } from './field_constancy/field_constancy';
+import { expressFieldIdentity } from './field_expression/field_expression';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -244,4 +247,17 @@ export const fieldCoherence = {
   alignFieldContinuity,
   convergeFieldAlignment,
   computeFieldCoherence,
+};
+
+/**
+ * Field Identity Triad - Unified interface for the sixteenth triad
+ * 
+ * Provides identity signature formation, identity constancy maintenance,
+ * and identity-based expression through a single integration point.
+ * Transforms coherence into a persistent, expressive identity.
+ */
+export const fieldIdentity = {
+  computeFieldSignature,
+  maintainFieldConstancy,
+  expressFieldIdentity,
 };
