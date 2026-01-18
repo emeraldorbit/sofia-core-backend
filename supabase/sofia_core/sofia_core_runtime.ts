@@ -88,6 +88,9 @@ import { continueDominion } from './field_dominion_continuity/field_dominion_con
 import { expandFieldStateII } from './field_expansion_ii/field_expansion_ii';
 import { mapHorizonStateII } from './field_horizon_mapping_ii/field_horizon_mapping_ii';
 import { continueHorizonStateII } from './field_horizon_continuity_ii/field_horizon_continuity_ii';
+import { returnToOriginII } from './field_origin_ii/field_origin_ii';
+import { generateFieldStateII } from './field_generation_ii/field_generation_ii';
+import { continueGenesisII } from './field_genesis_continuum_ii/field_genesis_continuum_ii';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -444,4 +447,18 @@ export const fieldHorizonII = {
   expandFieldStateII,
   mapHorizonStateII,
   continueHorizonStateII,
+};
+
+/**
+ * Field Genesis-II Triad - Unified interface for the twenty-ninth triad
+ *
+ * Provides second-order origin reinstatement, generative field creation,
+ * and renewal continuity through a single integration point.
+ * Returns the horizon-II field to its origin-seed, generates new structures,
+ * and integrates them into the second-order continuum.
+ */
+export const fieldGenesisII = {
+  returnToOriginII,
+  generateFieldStateII,
+  continueGenesisII,
 };
