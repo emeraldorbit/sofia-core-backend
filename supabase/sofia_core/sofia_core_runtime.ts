@@ -58,6 +58,9 @@ import { expressFieldIdentity } from './field_expression/field_expression';
 import { establishFieldPresence } from './field_presence/field_presence';
 import { computeFieldResonance } from './field_resonance/field_resonance';
 import { projectFieldPresence } from './field_presence_projection/field_projection';
+import { applyFieldInfluence } from './field_influence/field_influence';
+import { modulateFieldFromInfluence } from './field_modulation/field_modulation';
+import { shiftFieldState } from './field_shift/field_shift';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -276,4 +279,17 @@ export const fieldPresence = {
   establishFieldPresence,
   computeFieldResonance,
   projectFieldPresence,
+};
+
+/**
+ * Field Influence Triad - Unified interface for the eighteenth triad
+ * 
+ * Provides presence-based field influence, influence-based field modulation,
+ * and directional field shifting through a single integration point.
+ * Transforms presence into active field-shaping influence.
+ */
+export const fieldInfluence = {
+  applyFieldInfluence,
+  modulateFieldFromInfluence,
+  shiftFieldState,
 };
