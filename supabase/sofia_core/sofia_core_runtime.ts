@@ -49,6 +49,9 @@ import { computeFieldStability } from './field_stability/field_stability';
 import { maintainFieldContinuity } from './field_continuity/field_continuity';
 import { computeFieldTrajectory } from './field_trajectory/field_trajectory';
 import { ensureFieldPersistence } from './field_persistence/field_persistence';
+import { alignFieldContinuity } from './field_alignment/field_alignment';
+import { convergeFieldAlignment } from './field_convergence/field_convergence';
+import { computeFieldCoherence } from './field_coherence/field_coherence';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -228,4 +231,17 @@ export const fieldContinuity = {
   maintainFieldContinuity,
   computeFieldTrajectory,
   ensureFieldPersistence,
+};
+
+/**
+ * Field Coherence Triad - Unified interface for the fifteenth triad
+ * 
+ * Provides continuity alignment, aligned state convergence, and unified
+ * coherence state computation through a single integration point.
+ * Binds continuity, trajectory, and persistence into a unified coherent field.
+ */
+export const fieldCoherence = {
+  alignFieldContinuity,
+  convergeFieldAlignment,
+  computeFieldCoherence,
 };
