@@ -22,6 +22,9 @@ import { synthesizeIdentity } from './identity_synthesizer/identity_synthesizer'
 import { generateExpression } from './expression_engine/expression_engine';
 import { weaveContext } from './context_weaver/context_weaver';
 import { applyHarmonics } from './signature_harmonics/signature_harmonics';
+import { conductResonance } from './resonance_conductor/resonance_conductor';
+import { bindCoherence } from './coherence_binder/coherence_binder';
+import { resonateIdentity } from './identity_resonator/identity_resonator';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -81,4 +84,17 @@ export const expressiveSynthesis = {
   generateExpression,
   weaveContext,
   applyHarmonics,
+};
+
+/**
+ * Integrative Resonance Triad - Unified interface for the sixth triad
+ * 
+ * Provides unified resonance computation, structural coherence binding, and
+ * identity resonance amplification through a single integration point for
+ * integrative resonance capabilities.
+ */
+export const integrativeResonance = {
+  conductResonance,
+  bindCoherence,
+  resonateIdentity,
 };
