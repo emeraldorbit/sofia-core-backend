@@ -46,6 +46,9 @@ jobs:
           test -d supabase/sofia_core/field_choice || exit 1
           test -d supabase/sofia_core/field_resolution || exit 1
           test -d supabase/sofia_core/field_commitment || exit 1
+          test -d supabase/sofia_core/field_execution || exit 1
+          test -d supabase/sofia_core/field_projection || exit 1
+          test -d supabase/sofia_core/field_feedback || exit 1
           
           # Check required files exist
           test -f supabase/sofia_core/sofia_core_application_shell/app_shell_runtime.ts || exit 1

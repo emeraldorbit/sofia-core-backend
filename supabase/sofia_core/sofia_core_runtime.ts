@@ -40,6 +40,9 @@ import { generateIntent } from './field_intent/field_intent';
 import { chooseFieldOption } from './field_choice/field_choice';
 import { resolveFieldConflict } from './field_resolution/field_resolution';
 import { commitFieldDecision } from './field_commitment/field_commitment';
+import { executeFieldDecision } from './field_execution/field_execution';
+import { projectFieldAction } from './field_projection/field_projection';
+import { captureFieldFeedback } from './field_feedback/field_feedback';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -178,4 +181,18 @@ export const fieldDecision = {
   chooseFieldOption,
   resolveFieldConflict,
   commitFieldDecision,
+};
+
+/**
+ * Field Action Triad - Unified interface for the twelfth triad
+ * 
+ * Provides decision execution, action projection, and feedback capture.
+ * Turns committed decisions into outward expression, executes actions,
+ * projects them into the environment, and captures feedback for the
+ * next cognition cycle.
+ */
+export const fieldAction = {
+  executeFieldDecision,
+  projectFieldAction,
+  captureFieldFeedback,
 };
