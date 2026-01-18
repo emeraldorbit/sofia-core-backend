@@ -67,6 +67,9 @@ import { reintegrateFieldState } from './field_reintegration/field_reintegration
 import { adaptFieldState } from './field_adaptation/field_adaptation';
 import { evolveFieldState } from './field_evolution/field_evolution';
 import { continueFieldEvolution } from './field_continuum/field_continuum';
+import { upliftFieldState } from './field_uplift/field_uplift';
+import { refineFieldState } from './field_refinement/field_refinement';
+import { ascendFieldState } from './field_ascent/field_ascent';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -326,4 +329,17 @@ export const fieldEvolution = {
   adaptFieldState,
   evolveFieldState,
   continueFieldEvolution,
+};
+
+/**
+ * Field Ascension Triad - Unified interface for the twenty-first triad
+ * 
+ * Provides vertical field elevation, precision refinement, and
+ * stable ascending trajectory through a single integration point.
+ * Transforms evolution into uplift, refinement, and stable ascent.
+ */
+export const fieldAscension = {
+  upliftFieldState,
+  refineFieldState,
+  ascendFieldState,
 };
