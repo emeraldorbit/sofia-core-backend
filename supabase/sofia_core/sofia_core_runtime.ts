@@ -55,6 +55,9 @@ import { computeFieldCoherence } from './field_coherence/field_coherence';
 import { computeFieldSignature } from './field_signature/field_signature';
 import { maintainFieldConstancy } from './field_constancy/field_constancy';
 import { expressFieldIdentity } from './field_expression/field_expression';
+import { establishFieldPresence } from './field_presence/field_presence';
+import { computeFieldResonance } from './field_resonance/field_resonance';
+import { projectFieldPresence } from './field_presence_projection/field_projection';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -260,4 +263,17 @@ export const fieldIdentity = {
   computeFieldSignature,
   maintainFieldConstancy,
   expressFieldIdentity,
+};
+
+/**
+ * Field Presence Triad - Unified interface for the seventeenth triad
+ * 
+ * Provides identity-based presence formation, relational resonance,
+ * and outward presence projection through a single integration point.
+ * Transforms identity into embodied presence, relational resonance, and outward projection.
+ */
+export const fieldPresence = {
+  establishFieldPresence,
+  computeFieldResonance,
+  projectFieldPresence,
 };
