@@ -43,6 +43,9 @@ import { commitFieldDecision } from './field_commitment/field_commitment';
 import { executeFieldDecision } from './field_execution/field_execution';
 import { projectFieldAction } from './field_projection/field_projection';
 import { captureFieldFeedback } from './field_feedback/field_feedback';
+import { synthesizeFieldCycles } from './field_synthesis/field_synthesis';
+import { harmonizeFieldState } from './field_harmonization/field_harmonization';
+import { computeFieldStability } from './field_stability/field_stability';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -195,4 +198,18 @@ export const fieldAction = {
   executeFieldDecision,
   projectFieldAction,
   captureFieldFeedback,
+};
+
+/**
+ * Field Integration Triad - Unified interface for the thirteenth triad
+ * 
+ * Provides multi-cycle field synthesis, cross-cycle harmonization, and
+ * long-arc field stability computation through a single integration point
+ * for field integration capabilities. Integrates multi-cycle field activity
+ * into coherent, long-arc patterns.
+ */
+export const fieldIntegration = {
+  synthesizeFieldCycles,
+  harmonizeFieldState,
+  computeFieldStability,
 };
