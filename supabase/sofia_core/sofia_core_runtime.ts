@@ -16,6 +16,9 @@ import { filterIdentity } from './identity_filter/identity_filter';
 import { orchestrate } from './orchestration_engine/orchestration_engine';
 import { bridgeSemantics } from './semantic_bridge/semantic_bridge';
 import { synthesizeSignature } from './signature_synthesizer/signature_synthesizer';
+import { modulateSemantics } from './semantic_modulator/semantic_modulator';
+import { routeSignature } from './signature_router/signature_router';
+import { synthesizeIdentity } from './identity_synthesizer/identity_synthesizer';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -51,4 +54,16 @@ export const orchestrationSynthesis = {
   orchestrate,
   bridgeSemantics,
   synthesizeSignature,
+};
+
+/**
+ * Semantic Modulation Triad - Unified interface for the fourth triad
+ * 
+ * Provides dynamic meaning shaping, identity routing, and expressive synthesis
+ * through a single integration point for semantic modulation capabilities.
+ */
+export const semanticModulation = {
+  modulateSemantics,
+  routeSignature,
+  synthesizeIdentity,
 };
