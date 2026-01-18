@@ -13,6 +13,7 @@ on:
       - main
       - feature/bridge-triad
       - feature/final-modulation-triad
+      - feature/orchestration-synthesis-triad
 
 jobs:
   validate:
@@ -35,6 +36,9 @@ jobs:
           test -d supabase/sofia_core/sofia_api || exit 1
           test -d supabase/sofia_core/continuum_modulator || exit 1
           test -d supabase/sofia_core/signature_bridge || exit 1
+          test -d supabase/sofia_core/orchestration_engine || exit 1
+          test -d supabase/sofia_core/semantic_bridge || exit 1
+          test -d supabase/sofia_core/signature_synthesizer || exit 1
           
           # Check required files exist
           test -f supabase/sofia_core/sofia_core_application_shell/app_shell_runtime.ts || exit 1
