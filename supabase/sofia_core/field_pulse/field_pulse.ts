@@ -19,9 +19,5 @@ export function generatePulse(
   intensity: number,
   interval: number
 ): Array<number> {
-  const pulses = [];
-  for (let i = 0; i < interval; i++) {
-    pulses.push(intensity);
-  }
-  return pulses;
+  return new Array(interval).fill(intensity);
 }
