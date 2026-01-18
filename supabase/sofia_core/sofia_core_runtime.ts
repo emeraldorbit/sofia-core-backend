@@ -79,6 +79,9 @@ import { continueHorizonState } from './field_horizon_continuity/field_horizon_c
 import { returnToOrigin } from './field_origin/field_origin';
 import { generateFieldState } from './field_generation/field_generation';
 import { continueGenesis } from './field_genesis_continuum/field_genesis_continuum';
+import { stabilizeFieldCycle } from './field_cycle_stabilization/field_cycle_stabilization';
+import { extendFieldContinuum } from './field_continuum_extension/field_continuum_extension';
+import { synthesizeFieldContinuum } from './field_continuum_synthesis/field_continuum_synthesis';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -393,4 +396,18 @@ export const fieldGenesis = {
   returnToOrigin,
   generateFieldState,
   continueGenesis,
+};
+
+/**
+ * Field Continuum-II Triad - Unified interface for the twenty-fifth triad
+ * 
+ * Provides cycle stabilization, long-arc continuum extension,
+ * and multi-cycle continuum synthesis through a single integration point.
+ * Stabilizes renewal cycles, extends them into the long arc,
+ * and synthesizes them into a unified multi-cycle continuum.
+ */
+export const fieldContinuumII = {
+  stabilizeFieldCycle,
+  extendFieldContinuum,
+  synthesizeFieldContinuum,
 };
