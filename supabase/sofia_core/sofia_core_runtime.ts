@@ -82,6 +82,9 @@ import { continueGenesis } from './field_genesis_continuum/field_genesis_continu
 import { stabilizeFieldCycle } from './field_cycle_stabilization/field_cycle_stabilization';
 import { extendFieldContinuum } from './field_continuum_extension/field_continuum_extension';
 import { synthesizeFieldContinuum } from './field_continuum_synthesis/field_continuum_synthesis';
+import { establishAuthorityCycle } from './field_authority_cycle/field_authority_cycle';
+import { projectDominion } from './field_dominion_projection/field_dominion_projection';
+import { continueDominion } from './field_dominion_continuity/field_dominion_continuity';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -410,4 +413,18 @@ export const fieldContinuumII = {
   stabilizeFieldCycle,
   extendFieldContinuum,
   synthesizeFieldContinuum,
+};
+
+/**
+ * Field Dominion-II Triad - Unified interface for the twenty-sixth triad
+ * 
+ * Provides authority establishment over the unified continuum, dominion
+ * projection across domains, and persistent dominion continuity through
+ * a single integration point. Transforms continuity into governance,
+ * from flow to structural command.
+ */
+export const fieldDominionII = {
+  establishAuthorityCycle,
+  projectDominion,
+  continueDominion,
 };
