@@ -70,6 +70,9 @@ import { continueFieldEvolution } from './field_continuum/field_continuum';
 import { upliftFieldState } from './field_uplift/field_uplift';
 import { refineFieldState } from './field_refinement/field_refinement';
 import { ascendFieldState } from './field_ascent/field_ascent';
+import { formFieldPeak } from './field_peak/field_peak';
+import { focusFieldPeak } from './field_focus/field_focus';
+import { expressApexState } from './field_expression_apex/field_expression_apex';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -342,4 +345,18 @@ export const fieldAscension = {
   upliftFieldState,
   refineFieldState,
   ascendFieldState,
+};
+
+/**
+ * Field Apex Triad - Unified interface for the twenty-second triad
+ * 
+ * Provides apex peak formation, apex precision focusing, and
+ * highest-order apex expression through a single integration point.
+ * Concentrates ascent into peak formation, sharpens it into focus,
+ * and expresses it as the system's highest-order signal.
+ */
+export const fieldApex = {
+  formFieldPeak,
+  focusFieldPeak,
+  expressApexState,
 };
