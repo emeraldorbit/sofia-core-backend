@@ -85,6 +85,9 @@ import { synthesizeFieldContinuum } from './field_continuum_synthesis/field_cont
 import { establishAuthorityCycle } from './field_authority_cycle/field_authority_cycle';
 import { projectDominion } from './field_dominion_projection/field_dominion_projection';
 import { continueDominion } from './field_dominion_continuity/field_dominion_continuity';
+import { expandFieldStateII } from './field_expansion_ii/field_expansion_ii';
+import { mapHorizonStateII } from './field_horizon_mapping_ii/field_horizon_mapping_ii';
+import { continueHorizonStateII } from './field_horizon_continuity_ii/field_horizon_continuity_ii';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -427,4 +430,18 @@ export const fieldDominionII = {
   establishAuthorityCycle,
   projectDominion,
   continueDominion,
+};
+
+/**
+ * Field Horizon-II Triad - Unified interface for the twenty-eighth triad
+ *
+ * Provides second-order panoramic expansion, horizon-scale structural mapping,
+ * and stable horizon-II continuity through a single integration point.
+ * Expands the second-order apex into a panoramic field, maps the horizon-II
+ * structure, and stabilizes multi-cycle horizon continuity.
+ */
+export const fieldHorizonII = {
+  expandFieldStateII,
+  mapHorizonStateII,
+  continueHorizonStateII,
 };
