@@ -52,6 +52,9 @@ jobs:
           test -d supabase/sofia_core/field_synthesis || exit 1
           test -d supabase/sofia_core/field_harmonization || exit 1
           test -d supabase/sofia_core/field_stability || exit 1
+          test -d supabase/sofia_core/field_alignment || exit 1
+          test -d supabase/sofia_core/field_convergence || exit 1
+          test -d supabase/sofia_core/field_coherence || exit 1
           
           # Check required files exist
           test -f supabase/sofia_core/sofia_core_application_shell/app_shell_runtime.ts || exit 1
