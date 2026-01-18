@@ -61,6 +61,9 @@ jobs:
           test -d supabase/sofia_core/field_presence || exit 1
           test -d supabase/sofia_core/field_resonance || exit 1
           test -d supabase/sofia_core/field_presence_projection || exit 1
+          test -d supabase/sofia_core/field_expansion || exit 1
+          test -d supabase/sofia_core/field_horizon_mapping || exit 1
+          test -d supabase/sofia_core/field_horizon_continuity || exit 1
           
           # Check required files exist
           test -f supabase/sofia_core/sofia_core_application_shell/app_shell_runtime.ts || exit 1

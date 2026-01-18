@@ -73,6 +73,9 @@ import { ascendFieldState } from './field_ascent/field_ascent';
 import { formFieldPeak } from './field_peak/field_peak';
 import { focusFieldPeak } from './field_focus/field_focus';
 import { expressApexState } from './field_expression_apex/field_expression_apex';
+import { expandFieldState } from './field_expansion/field_expansion';
+import { mapHorizonState } from './field_horizon_mapping/field_horizon_mapping';
+import { continueHorizonState } from './field_horizon_continuity/field_horizon_continuity';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -359,4 +362,18 @@ export const fieldApex = {
   formFieldPeak,
   focusFieldPeak,
   expressApexState,
+};
+
+/**
+ * Field Horizon Triad - Unified interface for the twenty-third triad
+ * 
+ * Provides panoramic field expansion, horizon-scale structural mapping,
+ * and stable horizon continuity through a single integration point.
+ * Expands the apex into a panoramic field, maps the horizon,
+ * and stabilizes horizon-scale continuity.
+ */
+export const fieldHorizon = {
+  expandFieldState,
+  mapHorizonState,
+  continueHorizonState,
 };
