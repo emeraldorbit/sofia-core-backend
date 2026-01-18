@@ -85,6 +85,9 @@ import { synthesizeFieldContinuum } from './field_continuum_synthesis/field_cont
 import { establishAuthorityCycle } from './field_authority_cycle/field_authority_cycle';
 import { projectDominion } from './field_dominion_projection/field_dominion_projection';
 import { continueDominion } from './field_dominion_continuity/field_dominion_continuity';
+import { formFieldPeakII } from './field_peak_ii/field_peak_ii';
+import { focusFieldPeakII } from './field_focus_ii/field_focus_ii';
+import { expressApexIIState } from './field_expression_apex_ii/field_expression_apex_ii';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -427,4 +430,18 @@ export const fieldDominionII = {
   establishAuthorityCycle,
   projectDominion,
   continueDominion,
+};
+
+/**
+ * Field Apex-II Triad - Unified interface for the twenty-seventh triad
+ * 
+ * Provides second-order peak formation, higher-order apex focusing,
+ * and highest-order multi-cycle expression through a single integration point.
+ * Forms the second-order peak, focuses it into higher-order precision,
+ * and expresses it as the highest multi-cycle signal.
+ */
+export const fieldApexII = {
+  formFieldPeakII,
+  focusFieldPeakII,
+  expressApexIIState,
 };
