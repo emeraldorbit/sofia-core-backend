@@ -37,6 +37,9 @@ import { computeEquilibrium } from './field_equilibrium/field_equilibrium';
 import { interpretField } from './field_interpretation/field_interpretation';
 import { evaluateField } from './field_evaluation/field_evaluation';
 import { generateIntent } from './field_intent/field_intent';
+import { chooseFieldOption } from './field_choice/field_choice';
+import { resolveFieldConflict } from './field_resolution/field_resolution';
+import { commitFieldDecision } from './field_commitment/field_commitment';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -162,4 +165,17 @@ export const fieldCognition = {
   interpretField,
   evaluateField,
   generateIntent,
+};
+
+/**
+ * Field Decision Triad - Unified interface for the eleventh triad
+ * 
+ * Provides option selection, conflict resolution, and decision finalization.
+ * Turns proto-intent into structured choice, resolves competing tendencies,
+ * and produces stable, actionable commitments for the field layer.
+ */
+export const fieldDecision = {
+  chooseFieldOption,
+  resolveFieldConflict,
+  commitFieldDecision,
 };
