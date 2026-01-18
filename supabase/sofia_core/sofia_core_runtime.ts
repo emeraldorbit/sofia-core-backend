@@ -94,6 +94,9 @@ import { synthesizeFieldContinuumIII } from './field_continuum_synthesis_iii/fie
 import { establishAuthorityCycleIII } from './field_authority_cycle_iii/field_authority_cycle_iii';
 import { projectDominionIII } from './field_dominion_projection_iii/field_dominion_projection_iii';
 import { continueDominionIII } from './field_dominion_continuity_iii/field_dominion_continuity_iii';
+import { formFieldPeakIII } from './field_peak_iii/field_peak_iii';
+import { focusFieldPeakIII } from './field_focus_iii/field_focus_iii';
+import { expressApexStateIII } from './field_expression_apex_iii/field_expression_apex_iii';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -478,4 +481,18 @@ export const fieldDominionIII = {
   establishAuthorityCycleIII,
   projectDominionIII,
   continueDominionIII,
+};
+
+/**
+ * Field Apex-III Triad - Unified interface for the thirty-second triad
+ * 
+ * Provides third-order apex peak formation, third-order apex precision focusing,
+ * and third-order highest-order apex expression through a single integration point.
+ * Concentrates third-order ascent into peak formation, sharpens it into focus,
+ * and expresses it as the system's third-order highest-order signal.
+ */
+export const fieldApexIII = {
+  formFieldPeakIII,
+  focusFieldPeakIII,
+  expressApexStateIII,
 };
