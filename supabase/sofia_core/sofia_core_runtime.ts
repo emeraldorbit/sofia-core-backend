@@ -28,6 +28,9 @@ import { resonateIdentity } from './identity_resonator/identity_resonator';
 import { stabilizeCurrent } from './field_current/field_current';
 import { applyTide } from './field_tide/field_tide';
 import { generateWave } from './field_wave/field_wave';
+import { applyFlow } from './field_flow/field_flow';
+import { generatePulse } from './field_pulse/field_pulse';
+import { computeVector } from './field_vector/field_vector';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -114,4 +117,17 @@ export const fieldStabilization = {
   stabilizeCurrent,
   applyTide,
   generateWave,
+};
+
+/**
+ * Field Dynamics Triad - Unified interface for the eighth triad
+ * 
+ * Provides directional movement, rhythmic activation, and vector computation
+ * for field behavior. Introduces motion, rhythm, and navigational logic
+ * to the stabilized field, enabling dynamic field expression and behavior.
+ */
+export const fieldDynamics = {
+  applyFlow,
+  generatePulse,
+  computeVector,
 };
