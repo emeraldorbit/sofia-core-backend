@@ -484,7 +484,7 @@ export const fieldDominionIII = {
 };
 
 /**
- * Field Apex-III Triad - Unified interface for the thirty-first triad
+ * Field Apex-III Triad - Unified interface for the thirty-second triad
  * 
  * Provides third-order apex peak formation, third-order apex precision focusing,
  * and third-order highest-order apex expression through a single integration point.
