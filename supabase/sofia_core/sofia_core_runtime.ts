@@ -34,6 +34,9 @@ import { computeVector } from './field_vector/field_vector';
 import { generateResponse } from './field_response/field_response';
 import { applyAdjustment } from './field_adjustment/field_adjustment';
 import { computeEquilibrium } from './field_equilibrium/field_equilibrium';
+import { interpretField } from './field_interpretation/field_interpretation';
+import { evaluateField } from './field_evaluation/field_evaluation';
+import { generateIntent } from './field_intent/field_intent';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -146,4 +149,17 @@ export const fieldBehavior = {
   generateResponse,
   applyAdjustment,
   computeEquilibrium,
+};
+
+/**
+ * Field Cognition Triad - Unified interface for the tenth triad
+ * 
+ * Provides perceptual field processing, evaluative scoring, and proto-intent
+ * generation. Transforms raw behavior into meaning, assesses interpreted signals,
+ * and generates directional tendencies for higher-order decision layers.
+ */
+export const fieldCognition = {
+  interpretField,
+  evaluateField,
+  generateIntent,
 };
