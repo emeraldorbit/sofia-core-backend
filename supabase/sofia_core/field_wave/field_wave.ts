@@ -9,11 +9,11 @@
 
 /**
  * Generate oscillatory wave pattern
- * Creates sine wave based on amplitude and frequency
+ * Creates one complete sine wave cycle with the specified number of samples
  * 
- * @param amplitude - Wave amplitude
- * @param frequency - Number of samples in the wave
- * @returns Array of wave values
+ * @param amplitude - Wave amplitude (peak value)
+ * @param frequency - Number of samples in one complete wave cycle
+ * @returns Array of wave values forming one complete sine wave
  */
 export function generateWave(
   amplitude: number,
