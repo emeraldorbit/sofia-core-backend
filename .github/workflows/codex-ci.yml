@@ -2,7 +2,7 @@ name: Codex Architecture CI
 
 on:
   push:
-    branches: [ main, copilot/sub-pr-8 ]
+    branches: [ main, copilot/sub-pr-8, feature/bridge-triad ]
   pull_request:
     branches: [ main ]
 

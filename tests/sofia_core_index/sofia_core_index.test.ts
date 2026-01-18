@@ -9,6 +9,12 @@ describe("sofia_core_index", () => {
     expect(index.engines.identity_filter).toBeDefined();
   });
 
+  test("exports bridge triad modules", () => {
+    expect(index.engines.continuum_filter).toBeDefined();
+    expect(index.engines.signature_modulator).toBeDefined();
+    expect(index.engines.identity_bridge).toBeDefined();
+  });
+
   test("exports pipeline function", () => {
     expect(typeof index.pipeline).toBe("function");
   });
