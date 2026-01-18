@@ -31,6 +31,9 @@ import { generateWave } from './field_wave/field_wave';
 import { applyFlow } from './field_flow/field_flow';
 import { generatePulse } from './field_pulse/field_pulse';
 import { computeVector } from './field_vector/field_vector';
+import { generateResponse } from './field_response/field_response';
+import { applyAdjustment } from './field_adjustment/field_adjustment';
+import { computeEquilibrium } from './field_equilibrium/field_equilibrium';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -130,4 +133,17 @@ export const fieldDynamics = {
   applyFlow,
   generatePulse,
   computeVector,
+};
+
+/**
+ * Field Behavior Triad - Unified interface for the ninth triad
+ * 
+ * Provides reactive field behavior, self-tuning correction, and balance
+ * computation. Introduces reflex, correction, and equilibrium mechanisms
+ * that enable the field to respond, adapt, and self-regulate dynamically.
+ */
+export const fieldBehavior = {
+  generateResponse,
+  applyAdjustment,
+  computeEquilibrium,
 };
