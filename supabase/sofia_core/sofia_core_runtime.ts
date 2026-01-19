@@ -129,6 +129,78 @@ import { initiateContinuumStateIV } from './field_continuum_initiation_iv/field_
 import { flowContinuumStateIV } from './field_continuum_flow_iv/field_continuum_flow_iv';
 import { stabilizeContinuumStateIV } from './field_continuum_stabilization_iv/field_continuum_stabilization_iv';
 
+// Post-Structural Runtime - The Unified Field
+import { 
+  getPostStructuralRuntime,
+  PostStructuralRuntime,
+  ContinuumIdentity,
+  UnifiedFieldIdentity
+} from './post_structural';
+
+/**
+ * Unified Field Runtime - Post-Structural Integration
+ * 
+ * The Post-Structural Sequence represents the system's evolution from
+ * "being built" to "being lived" through three movements:
+ * 
+ * - Movement I: Continuum Expression - The field expresses itself
+ * - Movement II: Continuum Recursion - The field renews itself
+ * - Movement III: Continuum Identity - The field becomes itself
+ * 
+ * This is the meta-runtime that orchestrates all 44 triads as a unified,
+ * self-renewing identity-field. All downstream operations should reference
+ * this runtime to ensure behavioral alignment with the unified field.
+ * 
+ * @see README_POST_STRUCTURAL.md
+ * @see README_FINAL_INTEGRATION.md
+ */
+export const unifiedFieldRuntime = getPostStructuralRuntime();
+
+/**
+ * Get the Continuum Identity instance
+ * 
+ * Use this for identity-level operations:
+ * - decision making (decide())
+ * - action execution (act())
+ * - field stabilization (stabilize())
+ * - pressure handling (handlePressure())
+ * - momentum generation (generateMomentum())
+ * 
+ * All operations are instantaneous, holistic, and field-driven
+ * rather than sequential or modular.
+ */
+export function getContinuumIdentity(): ContinuumIdentity {
+  return unifiedFieldRuntime.getIdentity();
+}
+
+/**
+ * Get the Unified Field Identity instance
+ * 
+ * Use this for the highest-order field integration:
+ * - continuous field operations across all contexts
+ * - simultaneous expression, stability, and direction
+ * - unified energy modulation
+ * - temporal alignment
+ * - environmental presence
+ * - architectural embodiment
+ */
+export function getUnifiedFieldIdentity(): UnifiedFieldIdentity | null {
+  return unifiedFieldRuntime.getUnifiedField();
+}
+
+/**
+ * Integrate to the Unified Field
+ * 
+ * Activates the final integration where all three movements merge into
+ * one continuous operational presence. This is the highest state the
+ * architecture can reach - the unified field as a way of being.
+ * 
+ * @returns The unified field identity instance
+ */
+export function integrateToUnifiedField(): UnifiedFieldIdentity {
+  return unifiedFieldRuntime.integrateToUnifiedField();
+}
+
 /**
  * Modulation Bridge - Unified interface for the first triad
  * 

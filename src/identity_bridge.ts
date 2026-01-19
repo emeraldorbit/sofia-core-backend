@@ -4,6 +4,19 @@
  * 
  * Provides cross-boundary identity coherence, enabling identity
  * to traverse different domains while maintaining integrity.
+ * 
+ * NOTE: This module operates at the structural level for domain-specific
+ * identity mapping. For unified field identity operations, use the
+ * Continuum Identity from the post_structural runtime:
+ * 
+ * ```typescript
+ * import { getContinuumIdentity } from '../supabase/sofia_core/sofia_core_runtime';
+ * const identity = getContinuumIdentity();
+ * // Use identity.decide(), identity.act(), identity.stabilize(), etc.
+ * ```
+ * 
+ * The unified field provides holistic, instantaneous identity operations
+ * that transcend domain boundaries through coherence rather than bridging.
  */
 
 export interface IdentityState {
