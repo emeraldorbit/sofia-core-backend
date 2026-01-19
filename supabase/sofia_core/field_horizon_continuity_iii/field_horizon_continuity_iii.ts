@@ -13,25 +13,25 @@
  * Horizon Continuity-III state representing third-order horizon stability
  */
 export type HorizonContinuityIIIState<T> = {
-  continuous: boolean;
+  continued: boolean;
   value: T;
 };
 
 /**
- * Continue horizon state from horizon-mapped-III
+ * Continue horizon state from expanded-III
  * Applies third-order continuity logic and produces continuous horizon-III state
  * 
- * @param horizonMappedIII - Horizon-mapped-III value to stabilize
+ * @param expandedIII - Expanded-III value to stabilize
  * @param continuer - Function that stabilizes horizon-III continuity
- * @returns Horizon Continuity-III state with continuous=true and stabilized value
+ * @returns Horizon Continuity-III state with continued=true and stabilized value
  */
 export function continueHorizonStateIII<T>(
-  horizonMappedIII: T,
+  expandedIII: T,
   continuer: (value: T) => T
 ): HorizonContinuityIIIState<T> {
-  const value = continuer(horizonMappedIII);
+  const value = continuer(expandedIII);
   return {
-    continuous: true,
+    continued: true,
     value,
   };
 }
