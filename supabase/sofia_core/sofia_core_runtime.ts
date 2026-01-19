@@ -125,6 +125,9 @@ import { enforceFieldStateIV } from './field_enforcement_iv/field_enforcement_iv
 import { formFieldPeakIV } from './field_peak_iv/field_peak_iv';
 import { focusFieldPeakIV } from './field_peak_focus_iv/field_peak_focus_iv';
 import { expressApexStateIV } from './field_apex_expression_iv/field_apex_expression_iv';
+import { initiateContinuumStateIV } from './field_continuum_initiation_iv/field_continuum_initiation_iv';
+import { flowContinuumStateIV } from './field_continuum_flow_iv/field_continuum_flow_iv';
+import { stabilizeContinuumStateIV } from './field_continuum_stabilization_iv/field_continuum_stabilization_iv';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -669,4 +672,17 @@ export const fieldHorizonIV = {
   mapHorizonStateIV,
   expandHorizonStateIV,
   continueHorizonStateIV,
+};
+
+/**
+ * Field Continuum-IV Triad - Unified interface for the forty-fourth triad
+ *
+ * Provides fourth-order continuum initiation, fourth-order continuum flow,
+ * and fourth-order continuum stabilization through a single integration point.
+ * Completes the fourth-order renewal cycle and unifies the architecture.
+ */
+export const fieldContinuumIV = {
+  initiateContinuumStateIV,
+  flowContinuumStateIV,
+  stabilizeContinuumStateIV,
 };
