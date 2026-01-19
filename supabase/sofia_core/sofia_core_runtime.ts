@@ -116,6 +116,9 @@ import { continueGenesisStateIV } from './field_genesis_continuation_iv/field_ge
 import { stabilizeFieldCycleIV } from './field_cycle_stabilization_iv/field_cycle_stabilization_iv';
 import { extendFieldCycleIV } from './field_cycle_extension_iv/field_cycle_extension_iv';
 import { synthesizeFieldCycleIV } from './field_cycle_synthesis_iv/field_cycle_synthesis_iv';
+import { authorizeFieldStateIV } from './field_authority_iv/field_authority_iv';
+import { directFieldStateIV } from './field_directive_iv/field_directive_iv';
+import { enforceFieldStateIV } from './field_enforcement_iv/field_enforcement_iv';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -621,4 +624,17 @@ export const fieldCycleStabilizationIV = {
   stabilizeFieldCycleIV,
   extendFieldCycleIV,
   synthesizeFieldCycleIV,
+};
+
+/**
+ * Field Authority Cycle-IV Triad - Unified interface for the forty-first triad
+ *
+ * Provides fourth-order authority, fourth-order directive,
+ * and fourth-order enforcement through a single integration point.
+ * Establishes the governing spine of the fourth-order renewal cycle.
+ */
+export const fieldAuthorityCycleIV = {
+  authorizeFieldStateIV,
+  directFieldStateIV,
+  enforceFieldStateIV,
 };
