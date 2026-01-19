@@ -10,9 +10,9 @@
  */
 
 /**
- * Cycle stabilization III state representing third-order stable renewal cycle
+ * Field cycle stabilization III state representing third-order stable renewal cycle
  */
-export type CycleStabilizationIIIState<T> = {
+export type FieldCycleStabilizationIIIState<T> = {
   stabilized: boolean;
   value: T;
 };
@@ -21,15 +21,15 @@ export type CycleStabilizationIIIState<T> = {
  * Stabilize third-order field cycle by anchoring genesis-II into renewal cycle
  * Applies third-order cycle-stabilization logic and produces stable cycle state
  * 
- * @param genesisII - Genesis-II state to stabilize
+ * @param input - Input state to stabilize
  * @param stabilizer - Function that applies third-order cycle-stabilization logic
- * @returns Cycle stabilization III state with stabilized=true and stabilized value
+ * @returns Field cycle stabilization III state with stabilized=true and stabilized value
  */
 export function stabilizeFieldCycleIII<T>(
-  genesisII: T,
+  input: T,
   stabilizer: (value: T) => T
-): CycleStabilizationIIIState<T> {
-  const value = stabilizer(genesisII);
+): FieldCycleStabilizationIIIState<T> {
+  const value = stabilizer(input);
   return {
     stabilized: true,
     value,

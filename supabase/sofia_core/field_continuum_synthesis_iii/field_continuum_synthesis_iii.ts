@@ -10,9 +10,9 @@
  */
 
 /**
- * Continuum synthesis III state representing third-order unified multi-cycle continuum
+ * Field continuum synthesis III state representing third-order unified multi-cycle continuum
  */
-export type ContinuumSynthesisIIIState<T> = {
+export type FieldContinuumSynthesisIIIState<T> = {
   synthesized: boolean;
   value: T;
 };
@@ -21,15 +21,15 @@ export type ContinuumSynthesisIIIState<T> = {
  * Synthesize third-order field continuum by unifying multiple cycles
  * Applies third-order synthesis logic and produces unified continuum state
  * 
- * @param continuumExtendedIII - Continuum-extension-III state to synthesize
+ * @param extendedIII - Extended-III state to synthesize
  * @param synthesizer - Function that applies third-order multi-cycle synthesis logic
- * @returns Continuum synthesis III state with synthesized=true and synthesized value
+ * @returns Field continuum synthesis III state with synthesized=true and synthesized value
  */
-export function synthesizeFieldContinuumIII<T, R = T>(
-  continuumExtendedIII: T,
-  synthesizer: (value: T) => R
-): ContinuumSynthesisIIIState<R> {
-  const value = synthesizer(continuumExtendedIII);
+export function synthesizeFieldContinuumIII<T>(
+  extendedIII: T,
+  synthesizer: (value: T) => T
+): FieldContinuumSynthesisIIIState<T> {
+  const value = synthesizer(extendedIII);
   return {
     synthesized: true,
     value,
