@@ -23,7 +23,7 @@ export type DominionContinuityIIIState<T> = {
  * 
  * @param projectionIII - Third-order dominion-projection state to continue
  * @param continuer - Function that applies dominion-continuity logic
- * @returns Third-order dominion continuity state with continued=true and continuous value
+ * @returns Third-order dominion continuity state with continued=true and continued value
  */
 export function continueDominionIII<T>(
   projectionIII: T,
