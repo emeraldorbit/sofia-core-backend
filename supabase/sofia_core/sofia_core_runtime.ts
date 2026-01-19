@@ -107,6 +107,9 @@ import { expandFieldStateIII } from './field_expansion_iii/field_expansion_iii';
 import { mapHorizonStateIII } from './field_horizon_mapping_iii/field_horizon_mapping_iii';
 import { expandHorizonStateIII } from './field_horizon_expansion_iii/field_horizon_expansion_iii';
 import { continueHorizonStateIII } from './field_horizon_continuity_iii/field_horizon_continuity_iii';
+import { mapHorizonStateIV } from './field_horizon_mapping_iv/field_horizon_mapping_iv';
+import { expandHorizonStateIV } from './field_horizon_expansion_iv/field_horizon_expansion_iv';
+import { continueHorizonStateIV } from './field_horizon_continuity_iv/field_horizon_continuity_iv';
 import { returnToOriginIII } from './field_origin_iii/field_origin_iii';
 import { generateFieldStateIII } from './field_generation_iii/field_generation_iii';
 import { continueGenesisIII } from './field_genesis_continuum_iii/field_genesis_continuum_iii';
@@ -653,4 +656,17 @@ export const fieldPeakIV = {
   formFieldPeakIV,
   focusFieldPeakIV,
   expressApexStateIV,
+};
+
+/**
+ * Field Horizon-IV Triad - Unified interface for the forty-third triad
+ *
+ * Provides fourth-order horizon mapping, fourth-order horizon expansion,
+ * and fourth-order horizon continuity through a single integration point.
+ * Unfolds the fourth-order apex into its widest panoramic horizon.
+ */
+export const fieldHorizonIV = {
+  mapHorizonStateIV,
+  expandHorizonStateIV,
+  continueHorizonStateIV,
 };
