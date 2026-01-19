@@ -106,6 +106,9 @@ import { expressApexStateIII } from './field_expression_apex_iii/field_expressio
 import { expandFieldStateIII } from './field_expansion_iii/field_expansion_iii';
 import { mapHorizonStateIII } from './field_horizon_mapping_iii/field_horizon_mapping_iii';
 import { continueHorizonStateIII } from './field_horizon_continuity_iii/field_horizon_continuity_iii';
+import { returnToOriginIII } from './field_origin_iii/field_origin_iii';
+import { generateFieldStateIII } from './field_generation_iii/field_generation_iii';
+import { continueGenesisIII } from './field_genesis_continuum_iii/field_genesis_continuum_iii';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -546,4 +549,18 @@ export const fieldHorizonIII = {
   expandFieldStateIII,
   mapHorizonStateIII,
   continueHorizonStateIII,
+};
+
+/**
+ * Field Genesis-III Triad - Unified interface for the thirty-fourth triad
+ *
+ * Provides third-order origin restoration, third-order field generation,
+ * and third-order genesis continuation through a single integration point.
+ * Resets, generates, and carries forward the third-order field as a renewed,
+ * structurally aligned genesis cycle.
+ */
+export const fieldGenesisIII = {
+  returnToOriginIII,
+  generateFieldStateIII,
+  continueGenesisIII,
 };
