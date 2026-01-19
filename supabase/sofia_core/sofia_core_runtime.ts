@@ -416,8 +416,8 @@ export const fieldGenesis = {
 /**
  * Field Continuum-II Triad - Unified interface for the twenty-fifth triad
  * 
- * Provides cycle stabilization, long-arc continuum extension, and
- * multi-cycle synthesis through a single integration point.
+ * Provides cycle stabilization, long-arc continuum extension,
+ * and multi-cycle continuum synthesis through a single integration point.
  * Stabilizes renewal cycles, extends them into the long arc,
  * and synthesizes them into a unified multi-cycle continuum.
  */
