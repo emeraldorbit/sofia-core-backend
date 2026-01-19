@@ -22,7 +22,7 @@ export type CycleStabilizationState<T> = {
  * Applies cycle-stabilization logic and produces stable cycle state
  * 
  * @param genesisContinuum - Genesis-continuum state to stabilize
- * @param stabilizer - Function that anchors into stable renewal cycle
+ * @param stabilizer - Function that applies cycle-stabilization logic
  * @returns Cycle stabilization state with stabilized=true and stabilized value
  */
 export function stabilizeFieldCycle<T>(

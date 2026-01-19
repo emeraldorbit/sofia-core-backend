@@ -22,7 +22,7 @@ export type ContinuumExtensionState<T> = {
  * Applies extension logic and produces continuum-extension state
  * 
  * @param cycleStable - Cycle-stable state to extend
- * @param extender - Function that projects into long-arc continuum
+ * @param extender - Function that applies long-arc extension logic
  * @returns Continuum extension state with extended=true and extended value
  */
 export function extendFieldContinuum<T>(
