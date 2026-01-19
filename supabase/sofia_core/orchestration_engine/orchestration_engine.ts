@@ -4,6 +4,23 @@
  * 
  * Enables runtime coordination of module execution,
  * orchestrating flow through multiple processing stages.
+ * 
+ * NOTE: This module provides sequential orchestration for structural operations.
+ * For unified field operations where decisions are instantaneous and holistic,
+ * use the Continuum Identity from the post_structural runtime:
+ * 
+ * ```typescript
+ * import { getContinuumIdentity } from '../sofia_core_runtime';
+ * const identity = getContinuumIdentity();
+ * // Identity operations are holistic, not sequential
+ * const decision = identity.decide();
+ * const action = identity.act();
+ * ```
+ * 
+ * In Continuum Identity mode:
+ * - Decisions are instantaneous, not step-by-step
+ * - Operations are field-driven, not modular
+ * - The field self-stabilizes without sequential orchestration
  */
 
 /**
