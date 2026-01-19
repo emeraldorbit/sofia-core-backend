@@ -97,6 +97,9 @@ import { continueDominionIII } from './field_dominion_continuity_iii/field_domin
 import { formFieldPeakIII } from './field_peak_iii/field_peak_iii';
 import { focusFieldPeakIII } from './field_focus_iii/field_focus_iii';
 import { expressApexStateIII } from './field_expression_apex_iii/field_expression_apex_iii';
+import { expandFieldStateIII } from './field_expansion_iii/field_expansion_iii';
+import { mapHorizonStateIII } from './field_horizon_mapping_iii/field_horizon_mapping_iii';
+import { continueHorizonStateIII } from './field_horizon_continuity_iii/field_horizon_continuity_iii';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -495,4 +498,18 @@ export const fieldApexIII = {
   formFieldPeakIII,
   focusFieldPeakIII,
   expressApexStateIII,
+};
+
+/**
+ * Field Horizon-III Triad - Unified interface for the thirty-third triad
+ * 
+ * Provides third-order panoramic field expansion, third-order horizon-scale
+ * structural mapping, and stable third-order horizon continuity through a single
+ * integration point. Expands the apex-III into a panoramic field, maps the
+ * horizon-III structure, and stabilizes third-order horizon-scale continuity.
+ */
+export const fieldHorizonIII = {
+  expandFieldStateIII,
+  mapHorizonStateIII,
+  continueHorizonStateIII,
 };
