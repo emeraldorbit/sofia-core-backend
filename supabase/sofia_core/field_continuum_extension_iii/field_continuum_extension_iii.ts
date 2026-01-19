@@ -10,26 +10,26 @@
  */
 
 /**
- * Continuum extension III state representing third-order long-arc extension
+ * Field continuum extension III state representing third-order long-arc extension
  */
-export type ContinuumExtensionIIIState<T> = {
+export type FieldContinuumExtensionIIIState<T> = {
   extended: boolean;
   value: T;
 };
 
 /**
- * Extend third-order field continuum by projecting cycle-stable-III state into long arc
+ * Extend third-order field continuum by projecting stabilized-III state into long arc
  * Applies third-order extension logic and produces continuum-extension-III state
  * 
- * @param cycleStableIII - Cycle-stable-III state to extend
+ * @param stabilizedIII - Stabilized-III state to extend
  * @param extender - Function that applies third-order long-arc extension logic
- * @returns Continuum extension III state with extended=true and extended value
+ * @returns Field continuum extension III state with extended=true and extended value
  */
 export function extendFieldContinuumIII<T>(
-  cycleStableIII: T,
+  stabilizedIII: T,
   extender: (value: T) => T
-): ContinuumExtensionIIIState<T> {
-  const value = extender(cycleStableIII);
+): FieldContinuumExtensionIIIState<T> {
+  const value = extender(stabilizedIII);
   return {
     extended: true,
     value,
