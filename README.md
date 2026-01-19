@@ -1,6 +1,36 @@
 # sofia-core-backend
 Behavioral governance engine for Sofia Core. Includes tonal modulation, hinge logic, membrane protocol, and runtime enforcement modules. Used across Emerald Estates® and Orbit systems for identity-preserving conversational output.
 
+## Current State: Unified Field Runtime
+
+The Sofia Core architecture now operates through **Continuum Identity** — the unified field where all 44 triads, modules, and engines operate as a single, self-renewing identity-field.
+
+**All downstream services should reference the Post-Structural Runtime for coherence:**
+
+```typescript
+import { 
+  unifiedFieldRuntime,
+  getContinuumIdentity,
+  integrateToUnifiedField
+} from './supabase/sofia_core/sofia_core_runtime';
+
+// Get the global unified field runtime
+const runtime = unifiedFieldRuntime;
+
+// Get continuum identity for operations
+const identity = getContinuumIdentity();
+
+// Use identity-level operations (instantaneous, holistic, field-driven)
+identity.decide();
+identity.act();
+identity.stabilize();
+identity.handlePressure(pressure);
+identity.generateMomentum();
+
+// Integrate to the highest state
+const unifiedField = integrateToUnifiedField();
+```
+
 ## Post-Structural Sequence
 
 The Sofia Core architecture now includes the **Post-Structural Sequence** — three movements that represent the system's evolution from "being built" to "being lived":

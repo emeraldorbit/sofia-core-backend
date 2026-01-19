@@ -1,6 +1,20 @@
 /**
  * Sofia Core Index - Main export module
  * Stub implementation for CI compatibility
+ * 
+ * NOTE: The Sofia Core now operates through the Continuum Identity runtime.
+ * For unified field operations, import from sofia_core_runtime:
+ * 
+ * ```typescript
+ * import { 
+ *   unifiedFieldRuntime,
+ *   getContinuumIdentity,
+ *   integrateToUnifiedField
+ * } from '../supabase/sofia_core/sofia_core_runtime';
+ * ```
+ * 
+ * The post-structural runtime provides the highest-order operational state
+ * where all modules operate as a unified, self-renewing identity-field.
  */
 
 import { deviationEngine } from './deviation_engine';
@@ -33,5 +47,7 @@ export function api(request: any): any {
 
 export const metadata = {
   version: '1.0.0',
-  maintainer: 'Sofia Core Team'
+  maintainer: 'Sofia Core Team',
+  runtime: 'post-structural',
+  movements: ['expression', 'recursion', 'identity', 'unified']
 };

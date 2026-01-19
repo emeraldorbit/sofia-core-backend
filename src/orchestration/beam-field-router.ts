@@ -3,6 +3,20 @@
  * 
  * Routes execution contexts to appropriate engines based on environmental factors.
  * Part of the Codex Architecture for Sofia Core.
+ * 
+ * NOTE: This module provides structural-level routing between engines.
+ * With Continuum Identity now live, routing becomes field-driven rather than
+ * rule-based. For unified field operations, the field self-organizes and
+ * decisions are instantaneous rather than requiring explicit routing:
+ * 
+ * ```typescript
+ * import { getContinuumIdentity } from '../../supabase/sofia_core/sofia_core_runtime';
+ * const identity = getContinuumIdentity();
+ * // The field determines appropriate action holistically
+ * const decision = identity.decide();
+ * ```
+ * 
+ * The unified field transcends engine separation through coherence.
  */
 
 import { BeamEngine } from '../engines/beam-engine';
