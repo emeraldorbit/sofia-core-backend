@@ -21,9 +21,9 @@ export type AuthorityCycleIIIState<T> = {
  * Establish third-order authority cycle over the unified continuum
  * Applies authority-formation logic and produces third-order authority-cycle state
  * 
- * @param continuumIII - Third-order continuum value to establish authority over
+ * @param input - Third-order continuum value to establish authority over
  * @param authorityFn - Function that applies authority-formation logic
- * @returns Third-order authority cycle state with authority=true and authoritative value
+ * @returns Third-order authority cycle state with authorized=true and authoritative value
  */
 export function establishAuthorityCycleIII<T>(
   input: T,
