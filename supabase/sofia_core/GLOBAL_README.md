@@ -176,7 +176,7 @@ Each engine maintains its own version number inside its spec file.
 Global versioning is tracked in:
 
 `CHANGELOG.md`  
-`RELEASE_NOTES_v1.0.0.md`
+`RELEASE_NOTES_v1.0.1.md`
 
 ---
 

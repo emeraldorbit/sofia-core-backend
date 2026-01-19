@@ -85,9 +85,15 @@ import { synthesizeFieldContinuum } from './field_continuum_synthesis/field_cont
 import { establishAuthorityCycle } from './field_authority_cycle/field_authority_cycle';
 import { projectDominion } from './field_dominion_projection/field_dominion_projection';
 import { continueDominion } from './field_dominion_continuity/field_dominion_continuity';
+import { formFieldPeakII } from './field_peak_ii/field_peak_ii';
+import { focusFieldPeakII } from './field_focus_ii/field_focus_ii';
+import { expressApexIIState } from './field_expression_apex_ii/field_expression_apex_ii';
 import { expandFieldStateII } from './field_expansion_ii/field_expansion_ii';
 import { mapHorizonStateII } from './field_horizon_mapping_ii/field_horizon_mapping_ii';
 import { continueHorizonStateII } from './field_horizon_continuity_ii/field_horizon_continuity_ii';
+import { returnToOriginII } from './field_origin_ii/field_origin_ii';
+import { generateFieldStateII } from './field_generation_ii/field_generation_ii';
+import { continueGenesisII } from './field_genesis_continuum_ii/field_genesis_continuum_ii';
 import { stabilizeFieldCycleIII } from './field_cycle_stabilization_iii/field_cycle_stabilization_iii';
 import { extendFieldContinuumIII } from './field_continuum_extension_iii/field_continuum_extension_iii';
 import { synthesizeFieldContinuumIII } from './field_continuum_synthesis_iii/field_continuum_synthesis_iii';
@@ -445,6 +451,20 @@ export const fieldDominionII = {
 };
 
 /**
+ * Field Apex-II Triad - Unified interface for the twenty-seventh triad
+ * 
+ * Provides second-order peak formation, higher-order apex focusing,
+ * and highest-order multi-cycle expression through a single integration point.
+ * Forms the second-order peak, focuses it into higher-order precision,
+ * and expresses it as the highest multi-cycle signal.
+ */
+export const fieldApexII = {
+  formFieldPeakII,
+  focusFieldPeakII,
+  expressApexIIState,
+};
+
+/**
  * Field Horizon-II Triad - Unified interface for the twenty-eighth triad
  *
  * Provides second-order panoramic expansion, horizon-scale structural mapping,
@@ -459,7 +479,21 @@ export const fieldHorizonII = {
 };
 
 /**
- * Field Continuum-III Triad - Unified interface for the twenty-ninth triad
+ * Field Genesis-II Triad - Unified interface for the twenty-ninth triad
+ *
+ * Provides second-order origin reinstatement, generative field creation,
+ * and renewal continuity through a single integration point.
+ * Returns the horizon-II field to its origin-seed, generates new structures,
+ * and integrates them into the second-order continuum.
+ */
+export const fieldGenesisII = {
+  returnToOriginII,
+  generateFieldStateII,
+  continueGenesisII,
+};
+
+/**
+ * Field Continuum-III Triad - Unified interface for the thirtieth triad
  * 
  * Provides third-order cycle stabilization, third-order long-arc continuum extension,
  * and third-order multi-cycle continuum synthesis through a single integration point.
@@ -473,7 +507,7 @@ export const fieldContinuumIII = {
 };
 
 /**
- * Field Dominion-III Triad - Unified interface for the thirtieth triad
+ * Field Dominion-III Triad - Unified interface for the thirty-first triad
  * 
  * Provides third-order authority establishment over the unified continuum,
  * third-order dominion projection across domains, and persistent third-order
@@ -503,10 +537,10 @@ export const fieldApexIII = {
 /**
  * Field Horizon-III Triad - Unified interface for the thirty-third triad
  * 
- * Provides third-order panoramic expansion, third-order horizon-scale structural mapping,
- * and stable third-order horizon continuity through a single integration point.
- * Expands the third-order apex into a panoramic field, maps the horizon-III
- * structure, and stabilizes third-order multi-cycle horizon continuity.
+ * Provides third-order panoramic field expansion, third-order horizon-scale
+ * structural mapping, and stable third-order horizon continuity through a single
+ * integration point. Expands the apex-III into a panoramic field, maps the
+ * horizon-III structure, and stabilizes third-order horizon-scale continuity.
  */
 export const fieldHorizonIII = {
   expandFieldStateIII,
