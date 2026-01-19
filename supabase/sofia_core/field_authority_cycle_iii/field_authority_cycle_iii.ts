@@ -1,0 +1,37 @@
+/**
+ * Field Authority Cycle III - Third-Order Authority Anchoring
+ * Part of the Field Dominion-III Triad for Sofia Core
+ * 
+ * Establishes third-order authority over the unified multi-cycle continuum.
+ * Accepts third-order continuum values, applies authority-formation logic,
+ * and produces a third-order authority-cycle state.
+ * Represents "the field asserts third-order structural authority across cycles".
+ * This is the system's third-order authority-anchoring layer.
+ */
+
+/**
+ * Third-order authority cycle state representing multi-cycle authority
+ */
+export type AuthorityCycleIIIState<T> = {
+  authority: boolean;
+  value: T;
+};
+
+/**
+ * Establish third-order authority cycle over the unified continuum
+ * Applies authority-formation logic and produces third-order authority-cycle state
+ * 
+ * @param continuumIII - Third-order continuum value to establish authority over
+ * @param authorityFn - Function that applies authority-formation logic
+ * @returns Third-order authority cycle state with authority=true and authoritative value
+ */
+export function establishAuthorityCycleIII<T>(
+  continuumIII: T,
+  authorityFn: (value: T) => T
+): AuthorityCycleIIIState<T> {
+  const value = authorityFn(continuumIII);
+  return {
+    authority: true,
+    value,
+  };
+}

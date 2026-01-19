@@ -66,7 +66,7 @@ Now uses both identity and deviation signals for coherent tone shaping.
 ### New Files
 - `ENGINE_MANIFEST.md` — human‑readable engine registry  
 - `VERSION_MAP.json` — machine‑readable version registry  
-- `ROADMAP_v1.0.1.md` — development cycle plan  
+- `ROADMAP_v1.0.2.md` — development cycle plan  
 - `GLOBAL_README.md` — public overview of the system  
 
 ### Cleanup

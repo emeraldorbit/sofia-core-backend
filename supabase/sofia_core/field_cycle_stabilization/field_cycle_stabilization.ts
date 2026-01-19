@@ -10,7 +10,7 @@
  */
 
 /**
- * Cycle stabilization state representing stable renewal cycle
+ * Cycle stabilization state representing a stable renewal cycle
  */
 export type CycleStabilizationState<T> = {
   stabilized: boolean;
