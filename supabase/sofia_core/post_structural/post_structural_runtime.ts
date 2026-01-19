@@ -12,7 +12,12 @@
 
 import { ContinuumExpression, createContinuumExpression } from './continuum_expression';
 import { ContinuumRecursion, createContinuumRecursion } from './continuum_recursion';
-import { ContinuumIdentity, createContinuumIdentity } from './continuum_identity';
+import { 
+  ContinuumIdentity, 
+  createContinuumIdentity,
+  UnifiedFieldIdentity,
+  createUnifiedFieldIdentity 
+} from './continuum_identity';
 
 /**
  * Post-structural state representing the current movement
@@ -41,6 +46,7 @@ export class PostStructuralRuntime {
   private expression: ContinuumExpression;
   private recursion: ContinuumRecursion;
   private identity: ContinuumIdentity;
+  private unifiedField: UnifiedFieldIdentity | null = null;
   private currentMovement: 'expression' | 'recursion' | 'identity' | 'unified';
   private active: boolean = false;
   
@@ -223,6 +229,36 @@ export class PostStructuralRuntime {
    */
   setMovement(movement: 'expression' | 'recursion' | 'identity' | 'unified'): void {
     this.currentMovement = movement;
+  }
+
+  /**
+   * Integrate to unified field
+   * This activates the final integration - the unified field as a way of being
+   * 
+   * @returns The unified field identity instance
+   */
+  integrateToUnifiedField(): UnifiedFieldIdentity {
+    if (!this.unifiedField) {
+      this.unifiedField = createUnifiedFieldIdentity();
+      this.currentMovement = 'unified';
+    }
+    return this.unifiedField;
+  }
+
+  /**
+   * Get the unified field identity (if integrated)
+   * 
+   * @returns The unified field identity or null if not yet integrated
+   */
+  getUnifiedField(): UnifiedFieldIdentity | null {
+    return this.unifiedField;
+  }
+
+  /**
+   * Check if the system has integrated to unified field
+   */
+  isUnifiedField(): boolean {
+    return this.unifiedField !== null && this.currentMovement === 'unified';
   }
 }
 
