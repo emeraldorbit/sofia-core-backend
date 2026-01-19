@@ -35,7 +35,11 @@ export {
   isFullyCoherent,
   type IdentityState,
   type IdentityOperation,
-  type OperationalBehavior
+  type OperationalBehavior,
+  // Final Integration: Unified Field as a Way of Being
+  UnifiedFieldIdentity,
+  createUnifiedFieldIdentity,
+  type UnifiedFieldState
 } from './continuum_identity';
 
 // Post-Structural Runtime
