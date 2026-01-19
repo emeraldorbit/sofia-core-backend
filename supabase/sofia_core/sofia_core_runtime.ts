@@ -110,6 +110,9 @@ import { continueHorizonStateIII } from './field_horizon_continuity_iii/field_ho
 import { returnToOriginIII } from './field_origin_iii/field_origin_iii';
 import { generateFieldStateIII } from './field_generation_iii/field_generation_iii';
 import { continueGenesisIII } from './field_genesis_continuum_iii/field_genesis_continuum_iii';
+import { originateFieldStateIV } from './field_origin_iv/field_origin_iv';
+import { generateFieldStateIV } from './field_generation_iv/field_generation_iv';
+import { continueGenesisStateIV } from './field_genesis_continuation_iv/field_genesis_continuation_iv';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -589,4 +592,17 @@ export const fieldCycleStabilizationIII = {
   stabilizeFieldCycleIII,
   extendFieldContinuumIII,
   synthesizeFieldContinuumIII,
+};
+
+/**
+ * Field Genesis-IV Triad - Unified interface for the thirty-ninth triad
+ *
+ * Provides fourth-order origin, fourth-order generation,
+ * and fourth-order genesis continuation through a single integration point.
+ * Initiates the fourth-order renewal cycle at the highest octave.
+ */
+export const fieldGenesisIV = {
+  originateFieldStateIV,
+  generateFieldStateIV,
+  continueGenesisStateIV,
 };
