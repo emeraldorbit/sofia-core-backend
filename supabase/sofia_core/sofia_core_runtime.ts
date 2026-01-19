@@ -105,6 +105,7 @@ import { focusFieldPeakIII } from './field_focus_iii/field_focus_iii';
 import { expressApexStateIII } from './field_expression_apex_iii/field_expression_apex_iii';
 import { expandFieldStateIII } from './field_expansion_iii/field_expansion_iii';
 import { mapHorizonStateIII } from './field_horizon_mapping_iii/field_horizon_mapping_iii';
+import { expandHorizonStateIII } from './field_horizon_expansion_iii/field_horizon_expansion_iii';
 import { continueHorizonStateIII } from './field_horizon_continuity_iii/field_horizon_continuity_iii';
 import { returnToOriginIII } from './field_origin_iii/field_origin_iii';
 import { generateFieldStateIII } from './field_generation_iii/field_generation_iii';
@@ -551,16 +552,15 @@ export const fieldApexIII = {
 };
 
 /**
- * Field Horizon-III Triad - Unified interface for the thirty-third triad
- * 
- * Provides third-order panoramic field expansion, third-order horizon-scale
- * structural mapping, and stable third-order horizon continuity through a single
- * integration point. Expands the apex-III into a panoramic field, maps the
- * horizon-III structure, and stabilizes third-order horizon-scale continuity.
+ * Field Horizon-III Triad - Unified interface for the thirty-eighth triad
+ *
+ * Provides third-order horizon mapping, third-order horizon expansion,
+ * and third-order horizon continuity through a single integration point.
+ * Unfolds the third-order apex into a panoramic, stabilized horizon.
  */
 export const fieldHorizonIII = {
-  expandFieldStateIII,
   mapHorizonStateIII,
+  expandHorizonStateIII,
   continueHorizonStateIII,
 };
 

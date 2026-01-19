@@ -1,17 +1,17 @@
 import { continueHorizonStateIII } from '../../supabase/sofia_core/field_horizon_continuity_iii/field_horizon_continuity_iii';
 
 describe('field_horizon_continuity_iii', () => {
-  test('continues horizon-III using continuer', () => {
-    const continuer = (x: string) => `${x}::continued3`;
-    const result = continueHorizonStateIII('mapped3', continuer);
-    expect(result.continuous).toBe(true);
-    expect(result.value).toBe('mapped3::continued3');
+  test('continues third-order horizon numerically', () => {
+    const fn = (x: number) => x + 33;
+    const result = continueHorizonStateIII(400, fn);
+    expect(result.continued).toBe(true);
+    expect(result.value).toBe(433);
   });
 
-  test('continues numeric horizon-III', () => {
-    const continuer = (x: number) => x + 300;
-    const result = continueHorizonStateIII(10, continuer);
-    expect(result.continuous).toBe(true);
-    expect(result.value).toBe(310);
+  test('continues third-order horizon for strings', () => {
+    const fn = (x: string) => `${x}::cont3`;
+    const result = continueHorizonStateIII('expand3', fn);
+    expect(result.continued).toBe(true);
+    expect(result.value).toBe('expand3::cont3');
   });
 });

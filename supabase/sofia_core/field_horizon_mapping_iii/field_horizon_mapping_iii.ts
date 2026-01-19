@@ -18,18 +18,18 @@ export type HorizonMappingIIIState<T> = {
 };
 
 /**
- * Map horizon state from expansion-III
+ * Map horizon state from input
  * Applies third-order horizon mapping and produces mapped horizon-III state
  * 
- * @param expansionIII - Expansion-III value to map at horizon scale
- * @param mapper - Function that maps expansion-III into horizon-III structure
+ * @param input - Input value to map at horizon scale
+ * @param mapper - Function that maps input into horizon-III structure
  * @returns Horizon Mapping-III state with mapped=true and mapped value
  */
 export function mapHorizonStateIII<T>(
-  expansionIII: T,
+  input: T,
   mapper: (value: T) => T
 ): HorizonMappingIIIState<T> {
-  const value = mapper(expansionIII);
+  const value = mapper(input);
   return {
     mapped: true,
     value,
