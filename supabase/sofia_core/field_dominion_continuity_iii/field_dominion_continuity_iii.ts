@@ -13,7 +13,7 @@
  * Third-order dominion continuity state representing persistent governance
  */
 export type DominionContinuityIIIState<T> = {
-  continuous: boolean;
+  continued: boolean;
   value: T;
 };
 
@@ -31,7 +31,7 @@ export function continueDominionIII<T>(
 ): DominionContinuityIIIState<T> {
   const value = continuer(projectionIII);
   return {
-    continuous: true,
+    continued: true,
     value,
   };
 }

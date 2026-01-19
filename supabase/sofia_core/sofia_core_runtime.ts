@@ -510,14 +510,14 @@ export const fieldContinuumIII = {
 };
 
 /**
- * Field Dominion-III Triad - Unified interface for the thirty-first triad
- * 
- * Provides third-order authority establishment over the unified continuum,
- * third-order dominion projection across domains, and persistent third-order
- * dominion continuity through a single integration point. Transforms third-order
- * continuity into governance, from flow to structural command.
+ * Field Authority Cycle-III Triad - Unified interface for the thirty-sixth triad
+ *
+ * Provides third-order authority establishment, third-order dominion projection,
+ * and third-order dominion continuation through a single integration point.
+ * Establishes, projects, and carries forward the governing spine of the
+ * third-order renewal arc.
  */
-export const fieldDominionIII = {
+export const fieldAuthorityCycleIII = {
   establishAuthorityCycleIII,
   projectDominionIII,
   continueDominionIII,

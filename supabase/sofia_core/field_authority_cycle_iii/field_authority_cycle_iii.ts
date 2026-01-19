@@ -13,7 +13,7 @@
  * Third-order authority cycle state representing multi-cycle authority
  */
 export type AuthorityCycleIIIState<T> = {
-  authority: boolean;
+  authorized: boolean;
   value: T;
 };
 
@@ -26,12 +26,12 @@ export type AuthorityCycleIIIState<T> = {
  * @returns Third-order authority cycle state with authority=true and authoritative value
  */
 export function establishAuthorityCycleIII<T>(
-  continuumIII: T,
+  input: T,
   authorityFn: (value: T) => T
 ): AuthorityCycleIIIState<T> {
-  const value = authorityFn(continuumIII);
+  const value = authorityFn(input);
   return {
-    authority: true,
+    authorized: true,
     value,
   };
 }
