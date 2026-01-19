@@ -113,6 +113,9 @@ import { continueGenesisIII } from './field_genesis_continuum_iii/field_genesis_
 import { originateFieldStateIV } from './field_origin_iv/field_origin_iv';
 import { generateFieldStateIV } from './field_generation_iv/field_generation_iv';
 import { continueGenesisStateIV } from './field_genesis_continuation_iv/field_genesis_continuation_iv';
+import { stabilizeFieldCycleIV } from './field_cycle_stabilization_iv/field_cycle_stabilization_iv';
+import { extendFieldCycleIV } from './field_cycle_extension_iv/field_cycle_extension_iv';
+import { synthesizeFieldCycleIV } from './field_cycle_synthesis_iv/field_cycle_synthesis_iv';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -605,4 +608,17 @@ export const fieldGenesisIV = {
   originateFieldStateIV,
   generateFieldStateIV,
   continueGenesisStateIV,
+};
+
+/**
+ * Field Cycle Stabilization-IV Triad - Unified interface for the fortieth triad
+ *
+ * Provides fourth-order stabilization, fourth-order extension,
+ * and fourth-order synthesis through a single integration point.
+ * Establishes the operational stability of the fourth-order renewal cycle.
+ */
+export const fieldCycleStabilizationIV = {
+  stabilizeFieldCycleIV,
+  extendFieldCycleIV,
+  synthesizeFieldCycleIV,
 };
