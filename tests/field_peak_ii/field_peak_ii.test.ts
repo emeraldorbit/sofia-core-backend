@@ -1,45 +1,45 @@
 import { formFieldPeakII } from '../../supabase/sofia_core/field_peak_ii/field_peak_ii';
 
 describe('field_peak_ii', () => {
-  test('forms second-order peak using peakFn', () => {
-    const peakFn = (x: number) => x * 10;
-    const result = formFieldPeakII(3, peakFn);
+  test('forms second-order peak using peaker', () => {
+    const peaker = (x: number) => x * 5;
+    const result = formFieldPeakII(2, peaker);
     expect(result.peaked).toBe(true);
-    expect(result.value).toBe(30);
+    expect(result.value).toBe(10);
   });
 
   test('forms second-order peak from numeric state', () => {
-    const peakFn = (x: number) => x * 2.5;
-    const result = formFieldPeakII(8, peakFn);
+    const peaker = (x: number) => x * 3.5;
+    const result = formFieldPeakII(4, peaker);
     expect(result.peaked).toBe(true);
-    expect(result.value).toBe(20);
+    expect(result.value).toBe(14);
   });
 
   test('forms second-order peak from string state', () => {
-    const peakFn = (x: string) => `peak2:${x}`;
-    const result = formFieldPeakII('dominion2', peakFn);
+    const peaker = (x: string) => `peak2:${x}`;
+    const result = formFieldPeakII('dominion', peaker);
     expect(result.peaked).toBe(true);
-    expect(result.value).toBe('peak2:dominion2');
+    expect(result.value).toBe('peak2:dominion');
   });
 
   test('forms second-order peak from array state', () => {
-    const peakFn = (x: number[]) => [...x, Math.max(...x) * 2];
-    const result = formFieldPeakII([1, 2, 3], peakFn);
+    const peaker = (x: number[]) => [...x, Math.max(...x) * 3];
+    const result = formFieldPeakII([1, 2, 3], peaker);
     expect(result.peaked).toBe(true);
-    expect(result.value).toEqual([1, 2, 3, 6]);
+    expect(result.value).toEqual([1, 2, 3, 9]);
   });
 
   test('forms second-order peak from object state', () => {
-    const peakFn = (x: { intensity: number }) => ({ intensity: x.intensity * 10 });
-    const result = formFieldPeakII({ intensity: 5 }, peakFn);
+    const peaker = (x: { intensity: number }) => ({ intensity: x.intensity * 20 });
+    const result = formFieldPeakII({ intensity: 5 }, peaker);
     expect(result.peaked).toBe(true);
-    expect(result.value).toEqual({ intensity: 50 });
+    expect(result.value).toEqual({ intensity: 100 });
   });
 
-  test('forms second-order peak with identity peakFn', () => {
-    const peakFn = (x: string) => x;
-    const result = formFieldPeakII('PEAK_II', peakFn);
+  test('forms second-order peak with identity peaker', () => {
+    const peaker = (x: string) => x;
+    const result = formFieldPeakII('PEAK-II', peaker);
     expect(result.peaked).toBe(true);
-    expect(result.value).toBe('PEAK_II');
+    expect(result.value).toBe('PEAK-II');
   });
 });

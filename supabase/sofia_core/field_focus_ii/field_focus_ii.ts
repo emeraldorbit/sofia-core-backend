@@ -1,35 +1,35 @@
 /**
- * Field Focus II - Second-Order Apex Precision Focusing
+ * Field Focus II - Second-Order Apex Focusing
  * Part of the Field Apex-II Triad for Sofia Core
  * 
- * Focuses the second-order peak state into precise, directed form.
- * Accepts second-order peak states, applies focusing logic,
- * and produces a second-order focused field state.
- * Represents "the second-order field becomes sharply directed and exact".
- * This is the system's second-order apex-precision layer.
+ * Focuses the second-order peak into a precise, directed apex.
+ * Accepts peak-II states, applies focus-II logic,
+ * and produces a FocusIIState.
+ * Represents "the apex becomes sharply directed at the multi-cycle level".
+ * This is the system's higher-order precision layer.
  */
 
 /**
- * Second-order focus state representing precise, directed form
+ * Focus II state representing precise, directed multi-cycle apex
  */
-export type FieldFocusIIState<T> = {
+export type FocusIIState<T> = {
   focused: boolean;
   value: T;
 };
 
 /**
- * Focus second-order field peak with precision
- * Applies focusing logic and produces second-order focused state
+ * Focus second-order peak with higher-order precision
+ * Applies focus-II logic and produces FocusIIState
  * 
- * @param peakII - Second-order peak state to focus into precise form
- * @param focusFn - Function that focuses peak-II state into directed precision
- * @returns Second-order focus state with focused=true and focused value
+ * @param peakII - Peak II state to focus into precise multi-cycle form
+ * @param focuser - Function that focuses peak-II state into directed higher-order precision
+ * @returns Focus II state with focused=true and focused value
  */
 export function focusFieldPeakII<T>(
   peakII: T,
-  focusFn: (value: T) => T
-): FieldFocusIIState<T> {
-  const value = focusFn(peakII);
+  focuser: (value: T) => T
+): FocusIIState<T> {
+  const value = focuser(peakII);
   return {
     focused: true,
     value,

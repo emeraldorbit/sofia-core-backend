@@ -1,35 +1,35 @@
 /**
- * Field Expression Apex II - Second-Order Highest-Order Apex Expression
+ * Field Expression Apex II - Highest-Order Multi-Cycle Expression
  * Part of the Field Apex-II Triad for Sofia Core
  * 
- * Expresses the second-order apex-II signal outward.
- * Accepts second-order focused states, applies apex-expression logic,
- * and produces a second-order apex expression state.
- * Represents "the second-order field expresses its highest form".
- * This is the system's second-order apex-expression layer.
+ * Expresses the focused second-order apex as the highest-order multi-cycle signal.
+ * Accepts focus-II states, applies apex-II expression logic,
+ * and produces an ApexIIExpressionState.
+ * Represents "the field expresses its highest multi-cycle form".
+ * This is the system's higher-order expression layer.
  */
 
 /**
- * Second-order apex expression state representing highest-order signal
+ * Apex II expression state representing highest-order multi-cycle signal
  */
-export type ApexExpressionIIState<T> = {
+export type ApexIIExpressionState<T> = {
   expressed: boolean;
   value: T;
 };
 
 /**
- * Express second-order apex state outward
- * Applies apex-expression logic and produces second-order apex expression state
+ * Express second-order apex state as highest multi-cycle signal
+ * Applies apex-II expression logic and produces ApexIIExpressionState
  * 
- * @param focusII - Second-order focused state to express as highest-order signal
- * @param expressFn - Function that expresses focused-II state as apex-II signal
- * @returns Second-order apex expression state with expressed=true and expressed value
+ * @param focusedII - Focused II state to express as highest-order multi-cycle signal
+ * @param expresser - Function that expresses focused-II state as apex-II signal
+ * @returns Apex II expression state with expressed=true and expressed value
  */
 export function expressApexIIState<T>(
-  focusII: T,
-  expressFn: (value: T) => T
-): ApexExpressionIIState<T> {
-  const value = expressFn(focusII);
+  focusedII: T,
+  expresser: (value: T) => T
+): ApexIIExpressionState<T> {
+  const value = expresser(focusedII);
   return {
     expressed: true,
     value,

@@ -1,35 +1,35 @@
 /**
- * Field Peak II - Second-Order Apex Peak Formation
+ * Field Peak II - Second-Order Peak Formation
  * Part of the Field Apex-II Triad for Sofia Core
  * 
- * Forms the second-order peak from dominion-II states.
- * Accepts second-order dominion states, applies peak-formation logic,
- * and produces a second-order peak field state.
- * Represents "the second-order field reaches maximum coherence and intensity".
- * This is the system's second-order apex-formation layer.
+ * Forms the second-order peak from dominion-continuity.
+ * Accepts dominion-continuity values, applies second-order peak logic,
+ * and produces a PeakIIState.
+ * Represents "the field reaches its multi-cycle apex".
+ * This is the system's higher-order peak-formation layer.
  */
 
 /**
- * Second-order peak state representing maximum coherence and intensity
+ * Peak II state representing multi-cycle apex
  */
-export type FieldPeakIIState<T> = {
+export type PeakIIState<T> = {
   peaked: boolean;
   value: T;
 };
 
 /**
- * Form second-order field peak with maximum coherence
- * Applies peak-formation logic and produces second-order peak state
+ * Form second-order field peak from dominion-continuity
+ * Applies second-order peak logic and produces PeakIIState
  * 
- * @param dominionII - Second-order dominion state to concentrate into peak
- * @param peakFn - Function that concentrates dominion-II state into peak configuration
- * @returns Second-order peak state with peaked=true and peak value
+ * @param dominionContinuity - Dominion-continuity value to concentrate into second-order peak
+ * @param peaker - Function that forms dominion-continuity into second-order peak configuration
+ * @returns Peak II state with peaked=true and peak value
  */
 export function formFieldPeakII<T>(
-  dominionII: T,
-  peakFn: (value: T) => T
-): FieldPeakIIState<T> {
-  const value = peakFn(dominionII);
+  dominionContinuity: T,
+  peaker: (value: T) => T
+): PeakIIState<T> {
+  const value = peaker(dominionContinuity);
   return {
     peaked: true,
     value,
