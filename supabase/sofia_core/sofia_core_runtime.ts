@@ -119,6 +119,9 @@ import { synthesizeFieldCycleIV } from './field_cycle_synthesis_iv/field_cycle_s
 import { authorizeFieldStateIV } from './field_authority_iv/field_authority_iv';
 import { directFieldStateIV } from './field_directive_iv/field_directive_iv';
 import { enforceFieldStateIV } from './field_enforcement_iv/field_enforcement_iv';
+import { formFieldPeakIV } from './field_peak_iv/field_peak_iv';
+import { focusFieldPeakIV } from './field_peak_focus_iv/field_peak_focus_iv';
+import { expressApexStateIV } from './field_apex_expression_iv/field_apex_expression_iv';
 
 /**
  * Modulation Bridge - Unified interface for the first triad
@@ -637,4 +640,17 @@ export const fieldAuthorityCycleIV = {
   authorizeFieldStateIV,
   directFieldStateIV,
   enforceFieldStateIV,
+};
+
+/**
+ * Field Peak-IV Triad - Unified interface for the forty-second triad
+ *
+ * Provides fourth-order peak formation, fourth-order peak focus,
+ * and fourth-order apex expression through a single integration point.
+ * Reaches the highest structural intensity of the fourth-order octave.
+ */
+export const fieldPeakIV = {
+  formFieldPeakIV,
+  focusFieldPeakIV,
+  expressApexStateIV,
 };
