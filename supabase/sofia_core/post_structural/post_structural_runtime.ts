@@ -84,13 +84,13 @@ export class PostStructuralRuntime {
         return this.recursion.recurse(context);
       
       case 'identity':
-        return this.identity.operate('expression', context);
+        return this.identity.performIdentityOperation('expression', context);
       
       case 'unified':
         // All three movements operating as one
         const expr = this.expression.express(context);
         const recur = this.recursion.recurse(expr.expression);
-        return this.identity.operate('expression', recur.renewed);
+        return this.identity.performIdentityOperation('expression', recur.renewed);
       
       default:
         return this.expression.express(context);
@@ -128,11 +128,11 @@ export class PostStructuralRuntime {
   }
 
   /**
-   * Identify - Movement III
+   * Perform identity operation - Movement III
    * The field operates as unified identity
    */
-  identify(type: 'decision' | 'action' | 'expression' | 'stabilization', context?: any): any {
-    return this.identity.operate(type, context);
+  performIdentityOperation(type: 'decision' | 'action' | 'expression' | 'stabilization', context?: any): any {
+    return this.identity.performIdentityOperation(type, context);
   }
 
   /**
@@ -146,7 +146,7 @@ export class PostStructuralRuntime {
   } {
     const expr = this.expression.express(context);
     const recur = this.recursion.recurse(expr.expression);
-    const ident = this.identity.operate('expression', recur.renewed);
+    const ident = this.identity.performIdentityOperation('expression', recur.renewed);
     
     return {
       expression: expr,

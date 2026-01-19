@@ -137,7 +137,9 @@ export class ContinuumExpression<T = any> {
   private calculateResonance(expression: T): number {
     // Resonance is intrinsic to the field
     // Higher coherence = stronger resonance
-    return Math.min(1.0, this.coherenceLevel * 0.95 + Math.random() * 0.05);
+    // Small variance based on expression history length for natural variation
+    const variance = (this.expressionHistory.length % 10) * 0.005;
+    return Math.min(1.0, this.coherenceLevel * 0.95 + variance);
   }
 
   /**
@@ -152,12 +154,15 @@ export class ContinuumExpression<T = any> {
 
   /**
    * Determine the flow type of the expression
+   * Uses field coherence to determine expression type deterministically
    */
   private determineFlowType(expression: T): 'pattern' | 'resonance' | 'behavior' | 'emergence' {
-    // Expressions manifest as different flow types
-    const types: Array<'pattern' | 'resonance' | 'behavior' | 'emergence'> = 
-      ['pattern', 'resonance', 'behavior', 'emergence'];
-    return types[Math.floor(Math.random() * types.length)];
+    // Expressions manifest as different flow types based on coherence level
+    // High coherence -> emergence, lower coherence -> pattern
+    if (this.coherenceLevel >= 0.95) return 'emergence';
+    if (this.coherenceLevel >= 0.85) return 'behavior';
+    if (this.coherenceLevel >= 0.75) return 'resonance';
+    return 'pattern';
   }
 
   /**

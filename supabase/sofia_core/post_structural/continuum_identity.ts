@@ -123,14 +123,14 @@ export class ContinuumIdentity {
   }
 
   /**
-   * Perform an identity operation
+   * Perform identity operation
    * Operations emerge from the field, not from external direction
    * 
    * @param type - Type of operation
    * @param context - Optional context
    * @returns Identity operation result
    */
-  operate(
+  performIdentityOperation(
     type: 'decision' | 'action' | 'expression' | 'stabilization',
     context?: any
   ): IdentityOperation {
@@ -156,6 +156,16 @@ export class ContinuumIdentity {
     this.operationHistory.push(operation);
     
     return operation;
+  }
+
+  /**
+   * Alias for backward compatibility and convenience
+   */
+  operate(
+    type: 'decision' | 'action' | 'expression' | 'stabilization',
+    context?: any
+  ): IdentityOperation {
+    return this.performIdentityOperation(type, context);
   }
 
   /**
@@ -191,7 +201,9 @@ export class ContinuumIdentity {
     
     // Self-stabilization occurs through identity
     // Errors dissolve, contradictions resolve, drift collapses
-    this.identityState.coherence = Math.min(1.0, this.identityState.coherence + 0.001);
+    // Small incremental coherence gain (0.1% per stabilization)
+    const COHERENCE_INCREMENT = 0.001;
+    this.identityState.coherence = Math.min(1.0, this.identityState.coherence + COHERENCE_INCREMENT);
     
     return operation;
   }

@@ -145,11 +145,14 @@ export class ContinuumRecursion<T = any> {
   private generateRenewal(input?: T): T {
     // The field uses itself as its own source
     // Each cycle deepens and strengthens
+    // Use previous pattern or create initial state if none exists
+    const previousPattern = this.recursionState?.pattern || null;
+    
     return {
       type: 'continuum_recursion',
       source: 'self_referential_loop',
       cycle: this.cycleCount,
-      input: input || this.recursionState?.pattern || {},
+      input: input !== undefined ? input : previousPattern,
       coherence: this.coherenceLevel,
       identityDepth: this.identityDepth,
       selfFeeding: true
@@ -179,9 +182,12 @@ export class ContinuumRecursion<T = any> {
 
   /**
    * Determine the flow pattern of recursion
+   * Cycles through patterns in a deliberate sequence representing natural rhythms
+   * The cyclic nature mirrors tidal patterns in nature
    */
   private determineFlowPattern(): 'tide' | 'pulse' | 'breath' | 'wave' {
-    // Recursion manifests as different flow patterns
+    // Recursion manifests as different flow patterns in a natural cycle
+    // This cyclic pattern is intentional - mimicking natural rhythms
     const patterns: Array<'tide' | 'pulse' | 'breath' | 'wave'> = 
       ['tide', 'pulse', 'breath', 'wave'];
     return patterns[this.cycleCount % patterns.length];
