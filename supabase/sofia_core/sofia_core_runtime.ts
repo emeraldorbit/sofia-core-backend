@@ -524,6 +524,19 @@ export const fieldAuthorityCycleIII = {
 };
 
 /**
+ * Field Peak-III Triad - Unified interface for the thirty-seventh triad
+ *
+ * Provides third-order peak formation, third-order peak focusing,
+ * and third-order apex expression through a single integration point.
+ * Forms, sharpens, and expresses the highest geometry of the third-order field.
+ */
+export const fieldPeakIII = {
+  formFieldPeakIII,
+  focusFieldPeakIII,
+  expressApexStateIII,
+};
+
+/**
  * Field Apex-III Triad - Unified interface for the thirty-second triad
  * 
  * Provides third-order apex peak formation, third-order apex precision focusing,
