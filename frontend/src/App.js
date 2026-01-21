@@ -15,6 +15,7 @@ import UserProfile from './pages/UserProfile';
 import UserChat from './pages/UserChat';
 import CryptoHub from './pages/CryptoHub';
 import SubscriptionPlans from './pages/SubscriptionPlans';
+import Calling from './pages/Calling';
 
 // Auth Context
 const AuthContext = createContext(null);
