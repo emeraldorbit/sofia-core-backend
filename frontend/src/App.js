@@ -98,6 +98,7 @@ function App() {
           <Route path="/chat" element={<ProtectedRoute><UserChat /></ProtectedRoute>} />
           <Route path="/crypto" element={<ProtectedRoute><CryptoHub /></ProtectedRoute>} />
           <Route path="/subscription-plans" element={<ProtectedRoute><SubscriptionPlans /></ProtectedRoute>} />
+          <Route path="/calling" element={<ProtectedRoute><Calling /></ProtectedRoute>} />
 
           {/* Catch all */}
           <Route path="*" element={<Navigate to="/" replace />} />
