@@ -498,6 +498,174 @@ async def get_users():
     users = await users_col.find({}, {"_id": 0, "hashed_password": 0}).to_list(1000)
     return users
 
+# ==================== CALL HISTORY (for Supabase Edge Function) ====================
+# Additional MongoDB collections for hybrid architecture
+projects_col = db.projects
+messages_archive_col = db.messages_archive
+call_history_col = db.call_history
+creator_assets_col = db.creator_assets
+
+class CallHistoryCreate(BaseModel):
+    callId: str
+    callerId: Optional[str] = None
+    calleeId: Optional[str] = None
+    status: str
+    startedAt: str
+    endedAt: str
+    metadata: Optional[dict] = None
+
+@app.post("/api/call-history")
+async def log_call_history(call: CallHistoryCreate):
+    """Endpoint for Supabase Edge Function to log calls to MongoDB"""
+    started = datetime.fromisoformat(call.startedAt.replace('Z', '+00:00'))
+    ended = datetime.fromisoformat(call.endedAt.replace('Z', '+00:00'))
+    duration_seconds = (ended - started).total_seconds()
+
+    doc = {
+        "id": str(uuid.uuid4()),
+        "callId": call.callId,
+        "callerId": call.callerId,
+        "calleeId": call.calleeId,
+        "status": call.status,
+        "startedAt": started.isoformat(),
+        "endedAt": ended.isoformat(),
+        "durationSeconds": duration_seconds,
+        "metadata": call.metadata or {},
+        "createdAt": datetime.now(timezone.utc).isoformat()
+    }
+
+    await call_history_col.insert_one(doc)
+    return {"ok": True, "id": doc["id"]}
+
+@app.get("/api/call-history")
+async def get_call_history(user_id: Optional[str] = None, limit: int = 50):
+    query = {}
+    if user_id:
+        query["$or"] = [{"callerId": user_id}, {"calleeId": user_id}]
+    
+    calls = await call_history_col.find(query, {"_id": 0}).sort("createdAt", -1).limit(limit).to_list(limit)
+    return calls
+
+# ==================== PROJECTS (MongoDB for creative work) ====================
+class ProjectCreate(BaseModel):
+    name: str
+    description: Optional[str] = None
+    data: Optional[dict] = None
+
+@app.get("/api/projects")
+async def get_projects(user_id: str):
+    projects = await projects_col.find({"ownerId": user_id}, {"_id": 0}).to_list(100)
+    return projects
+
+@app.post("/api/projects")
+async def create_project(project: ProjectCreate, user_id: str):
+    doc = {
+        "id": str(uuid.uuid4()),
+        "ownerId": user_id,
+        "name": project.name,
+        "description": project.description,
+        "data": project.data or {},
+        "createdAt": datetime.now(timezone.utc).isoformat(),
+        "updatedAt": datetime.now(timezone.utc).isoformat()
+    }
+    await projects_col.insert_one(doc)
+    return {k: v for k, v in doc.items() if k != "_id"}
+
+@app.put("/api/projects/{project_id}")
+async def update_project(project_id: str, project: ProjectCreate):
+    update_data = {
+        "name": project.name,
+        "description": project.description,
+        "data": project.data,
+        "updatedAt": datetime.now(timezone.utc).isoformat()
+    }
+    result = await projects_col.update_one({"id": project_id}, {"$set": update_data})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return {"message": "Updated"}
+
+@app.delete("/api/projects/{project_id}")
+async def delete_project(project_id: str):
+    result = await projects_col.delete_one({"id": project_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return {"message": "Deleted"}
+
+# ==================== MESSAGES ARCHIVE (MongoDB long-term storage) ====================
+class MessageArchive(BaseModel):
+    conversationId: str
+    senderId: str
+    content: str
+    metadata: Optional[dict] = None
+
+@app.post("/api/messages/archive")
+async def archive_message(message: MessageArchive):
+    doc = {
+        "id": str(uuid.uuid4()),
+        "conversationId": message.conversationId,
+        "senderId": message.senderId,
+        "content": message.content,
+        "metadata": message.metadata or {},
+        "createdAt": datetime.now(timezone.utc).isoformat()
+    }
+    await messages_archive_col.insert_one(doc)
+    return {k: v for k, v in doc.items() if k != "_id"}
+
+@app.get("/api/messages/archive/{conversation_id}")
+async def get_archived_messages(conversation_id: str, limit: int = 100):
+    messages = await messages_archive_col.find(
+        {"conversationId": conversation_id}, {"_id": 0}
+    ).sort("createdAt", 1).limit(limit).to_list(limit)
+    return messages
+
+# ==================== CREATOR ASSETS (MongoDB for creative assets) ====================
+class CreatorAsset(BaseModel):
+    type: str  # scene, template, preset, layout
+    name: str
+    data: dict
+
+@app.get("/api/creator-assets")
+async def get_creator_assets(user_id: str, asset_type: Optional[str] = None):
+    query = {"ownerId": user_id}
+    if asset_type:
+        query["type"] = asset_type
+    assets = await creator_assets_col.find(query, {"_id": 0}).to_list(100)
+    return assets
+
+@app.post("/api/creator-assets")
+async def create_asset(asset: CreatorAsset, user_id: str):
+    doc = {
+        "id": str(uuid.uuid4()),
+        "ownerId": user_id,
+        "type": asset.type,
+        "name": asset.name,
+        "data": asset.data,
+        "createdAt": datetime.now(timezone.utc).isoformat(),
+        "updatedAt": datetime.now(timezone.utc).isoformat()
+    }
+    await creator_assets_col.insert_one(doc)
+    return {k: v for k, v in doc.items() if k != "_id"}
+
+@app.put("/api/creator-assets/{asset_id}")
+async def update_asset(asset_id: str, asset: CreatorAsset):
+    update_data = {
+        "type": asset.type,
+        "name": asset.name,
+        "data": asset.data,
+        "updatedAt": datetime.now(timezone.utc).isoformat()
+    }
+    result = await creator_assets_col.update_one({"id": asset_id}, {"$set": update_data})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Asset not found")
+    return {"message": "Updated"}
+
+@app.delete("/api/creator-assets/{asset_id}")
+async def delete_asset(asset_id: str):
+    result = await creator_assets_col.delete_one({"id": asset_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Asset not found")
+    return {"message": "Deleted"}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8001)
