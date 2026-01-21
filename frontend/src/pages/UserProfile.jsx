@@ -131,7 +131,7 @@ export default function UserProfile() {
         <Card className="bg-zinc-900/50 border-zinc-800">
           <CardContent className="p-6">
             <Button
-              onClick={() => { if (confirm('Are you sure you want to log out?')) logout(); }}
+              onClick={() => { if (window.confirm('Are you sure you want to log out?')) logout(); }}
               variant="outline"
               className="w-full border-red-500/30 text-red-400 hover:bg-red-500/10"
             >

@@ -29,10 +29,11 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: rgb(39 39 42);
   }
   body {
-    @apply bg-zinc-950 text-zinc-100;
+    background-color: rgb(9 9 11);
+    color: rgb(244 244 245);
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 }

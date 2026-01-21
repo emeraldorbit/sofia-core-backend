@@ -215,7 +215,7 @@ export default function Contacts() {
                           variant="ghost"
                           size="icon"
                           onClick={() => {
-                            if (confirm('Delete this contact?')) {
+                            if (window.confirm('Delete this contact?')) {
                               deleteMutation.mutate(contact.id);
                             }
                           }}
