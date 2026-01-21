@@ -18,9 +18,9 @@ export default function Dashboard() {
     { icon: Sparkles, title: 'Sofia AI', desc: 'Chat with your AI assistant', href: '/sofia', color: 'emerald' },
     { icon: Building2, title: 'Properties', desc: 'Manage real estate', href: '/properties', color: 'blue' },
     { icon: Bitcoin, title: 'Crypto', desc: 'Trading dashboard', href: '/crypto', color: 'orange' },
+    { icon: Phone, title: 'Calling', desc: 'Voice & video calls', href: '/calling', color: 'green' },
     { icon: Users, title: 'Contacts', desc: 'Manage contacts', href: '/contacts', color: 'purple' },
     { icon: MessageSquare, title: 'Messages', desc: 'Chat with users', href: '/chat', color: 'pink' },
-    { icon: Crown, title: 'Subscription', desc: 'Upgrade your plan', href: '/subscription-plans', color: 'yellow' },
   ];
 
   const stats = [
