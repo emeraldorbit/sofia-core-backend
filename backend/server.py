@@ -344,10 +344,22 @@ async def get_status_checks():
 # Include the router in the main app
 app.include_router(api_router)
 
+# CORS configuration - when using credentials, origins cannot be wildcard
+cors_origins_env = os.environ.get('CORS_ORIGINS', '')
+if cors_origins_env and cors_origins_env != '*':
+    cors_origins = cors_origins_env.split(',')
+else:
+    # Default to common development origins
+    cors_origins = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://uptime-savior.preview.emergentagent.com"
+    ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=cors_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
