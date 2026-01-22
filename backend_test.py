@@ -112,6 +112,26 @@ class AuthSystemTester:
         
         return False
 
+    def create_admin_user(self):
+        """Create an admin user for testing"""
+        admin_data = {
+            "name": "Admin User",
+            "email": "admin@test.com", 
+            "password": "admin123"
+        }
+        
+        # Try to register admin user (might fail if already exists)
+        success, response = self.run_test(
+            "Create Admin User",
+            "POST",
+            "auth/register", 
+            200,
+            data=admin_data
+        )
+        
+        # Note: We can't directly set admin role via API, this would need database access
+        return success
+
     def test_get_current_user(self):
         """Test getting current user data"""
         if not self.session_token:
